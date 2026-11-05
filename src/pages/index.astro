@@ -129,7 +129,19 @@ const schema = {
               <span>{service.number}</span>
             </div>
             <p class="eyebrow">{service.eyebrow}</p>
-            <h3>{service.title}</h3>
+            <h3
+              class:list={{
+                'assessment-title': service.id === 'avaliacao-neuropsicologica',
+              }}
+            >
+              {service.id === 'avaliacao-neuropsicologica' ? (
+                <>
+                  Avaliação <span>Neuropsicológica</span>
+                </>
+              ) : (
+                service.title
+              )}
+            </h3>
             <p>{service.description}</p>
             <ul class="tags">
               {service.tags.map((tag) => (
