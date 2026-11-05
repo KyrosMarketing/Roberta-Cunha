@@ -48,7 +48,7 @@ As fotografias e a marca original foram recebidas em `Arquivo 2.zip`. Os cinco a
 
 Os caminhos, textos alternativos, dimensões, `srcSet`, `avifSrcSet` e `sizes` ficam em `site.assets`, em `src/data/site.ts`. `Portrait.astro` usa `<picture>`, AVIF preferencial com fallback WebP, prioridade de carregamento na hero e lazy loading em Sobre. O enquadramento usa `object-fit: cover`, com posição focal definida por seção no CSS. Os arquivos não recebem filtros ou alterações de identidade.
 
-A imagem dedicada de compartilhamento social permanece pendente; não há caminho fictício configurado. Fontes são distribuídas localmente via pacotes Fontsource; nenhuma chamada a Google Fonts.
+A imagem social de 1200 × 630 px está em `public/social/roberta-cunha-og-v1.png`, com a marca original sobre composição off-white/rosé e detalhes terracota. Para regenerar: `npm run generate:social`. A composição é determinística e apenas redimensiona/incorpora a logo original, sem redesenhá-la. Fontes são distribuídas localmente via pacotes Fontsource; nenhuma chamada a Google Fonts.
 
 ## Privacidade e integrações
 
@@ -75,3 +75,13 @@ Configuração prevista: build `npm run build`, diretório de saída `dist`, Nod
 A indexação está bloqueada por `site.reviewMode: true` e pelo cabeçalho `X-Robots-Tag: noindex` em `public/_headers`. Isso não restringe acesso: qualquer pessoa com o endereço pode visualizar. O `robots.txt` permite rastreamento para os buscadores conseguirem ler o `noindex`. Antes do lançamento aprovado, desative `reviewMode`, remova somente o cabeçalho `X-Robots-Tag` e valide a saída. Documentos legais continuam com `noindex` próprio.
 
 No Cloudflare Pages, selecione o repositório `KyrosMarketing/Roberta-Cunha`, branch `main`, build `npm run build`, saída `dist`, raiz em branco e variável `NODE_VERSION=24`. O primeiro endereço deve ser o `.pages.dev` fornecido pela Cloudflare; não conectar o domínio ou alterar DNS nesta etapa.
+
+## Compartilhamento social e assinatura da agência
+
+Título e descrição padrão estão em `site.seo`; o layout reutiliza os mesmos valores em title, description, Open Graph e Twitter Card. A canonical da landing é `https://robertacunha.com.br/`. A URL absoluta da imagem é `https://robertacunha.com.br/social/roberta-cunha-og-v1.png`, publicada como arquivo estático sem autenticação pelo projeto. Ao mudar a imagem futuramente, versione o nome do arquivo e atualize `site.assets.social` para reduzir cache de imagem.
+
+Confirme o HTTP 200 e `Content-Type: image/png` nesse endereço no domínio final depois do deploy. O domínio precisa apontar para esta versão; publicar somente no Pages não atualiza automaticamente outro servidor no domínio. Neste ambiente, a consulta pública ao domínio foi bloqueada pelo proxy com 403; a disponibilização foi validada no preview de produção local, sem confirmar a hospedagem pública.
+
+WhatsApp e outras plataformas podem guardar metadados e imagens antigos. Teste um novo compartilhamento após o deploy; um parâmetro de revisão na URL pode ajudar no teste, mas não garante renovação de cache. Cards já enviados podem permanecer com a aparência antiga. A canonical continua sem parâmetros. Não há como garantir atualização imediata de cache da plataforma.
+
+O crédito da Kyros está ativo com o PNG original em `public/brand/kyros-original.png`, copiado byte a byte do ZIP enviado. A assinatura “Desenvolvido por” com a logo aponta para `https://kyrosmarketing.com.br/`. Os dados ficam em `site.agency`. O arquivo é quadrado e possui margens transparentes amplas; a caixa CSS apresenta a área útil da marca sem alterar o arquivo, recolorir, deformar ou cortar seus traços. Ao substituir a logo futuramente, confira essas margens e os ajustes da caixa.

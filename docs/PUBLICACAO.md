@@ -7,7 +7,9 @@
 - [x] Dois retratos reais recebidos em 853 × 1280 px e incorporados.
 - [ ] Aprovar enquadramentos e textos alternativos.
 - [x] Versões responsivas AVIF e WebP dos dois retratos.
-- [ ] Imagem Open Graph dedicada e autorizada.
+- [x] Imagem Open Graph de 1200 × 630 px com a logo original e metadados solicitados.
+- [ ] Confirmar resposta pública da imagem no domínio após deploy e revisar um novo compartilhamento.
+- [x] Logo original da Kyros recebida, preservada e aplicada à assinatura clicável no rodapé.
 - [ ] Conferir nome, CRP 08/38333, formação e nome oficial da instituição/especialização.
 - [ ] Validar a forma de apresentar qualificação/especialidade e referência à TCC.
 - [ ] Confirmar públicos, modalidades por serviço e condições de atendimento online.

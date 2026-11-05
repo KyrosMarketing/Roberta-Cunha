@@ -99,3 +99,13 @@ Os testes de rolagem em 390 e 1440 px registram eventos reais de transição, pe
 As verificações automatizadas não equivalem a medições em aparelhos físicos nem garantem 60 FPS em qualquer dispositivo. Não foi executado novo Lighthouse nesta revisão.
 
 Resultado final desta revisão: **14 testes aprovados em 22,7 s**, build estático, tipos e formatação aprovados. Sem violações Axe nos estados estáveis auditados e sem erros de console/rede nas verificações da landing page.
+
+## Open Graph, Twitter Card e crédito Kyros
+
+Título e descrição padrão de SEO centralizados em `site.seo`, com os textos solicitados e reutilização em Open Graph/Twitter Card. Canonical da landing e URLs sociais absolutas em `https://robertacunha.com.br/`. Metadados de imagem incluem tipo PNG, dimensões 1200 × 630 e texto alternativo. A imagem versionada está em `public/social/roberta-cunha-og-v1.png`, com composição determinística baseada na logo original, sem redesenho. Regeneração: `npm run generate:social`.
+
+Logo original da Kyros recebida em `LOGO KYROS PRETA (SEM FUNDO).png.zip`; PNG de 1254 × 1254 preservado byte a byte em `public/brand/kyros-original.png`. A caixa de exibição compensa apenas as margens transparentes, sem recortar os traços nem distorcer a imagem. Assinatura conferida em 320, 390, 768 e 1440 px e vinculada a `https://kyrosmarketing.com.br/`.
+
+Resultado final: **15 testes aprovados em 22,8 s**, checagem de tipos, build e formatação aprovados. O teste social verifica title, description, canonical, valores únicos de Open Graph/Twitter Card, URLs absolutas e entrega HTTP 200 local do PNG com tipo e dimensões corretos. Também verifica o link e a logo do crédito. Imagem social e rodapé inspecionados visualmente; nenhum texto visível da landing foi alterado além da assinatura autorizada.
+
+A consulta externa à imagem no domínio final retornou 403 do proxy do ambiente. Portanto, o acesso público e a prévia real em WhatsApp não foram confirmados nesta sessão. O arquivo está incluído na saída estática do build; confirmar sua resposta no domínio final após o deploy. O domínio deve servir esta versão para disponibilizar a URL absoluta configurada. O WhatsApp pode manter cards/metadados antigos em cache, inclusive depois de o arquivo novo estar acessível. Os relatórios Lighthouse anteriores continuam históricos; não foi executada nova auditoria Lighthouse nesta revisão.

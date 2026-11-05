@@ -1,3 +1,4 @@
+import sharp from 'sharp';
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
@@ -290,3 +291,56 @@ for (const width of [390, 1440]) {
     await expect(card).toHaveCSS('opacity', '1');
   });
 }
+
+test('metadados sociais únicos, URLs absolutas e imagem pública estática', async ({
+  page,
+  request,
+}) => {
+  await page.goto('/');
+  const title = 'Roberta Cunha | Psicologia e Neuropsicologia em Curitiba';
+  const description =
+    'Um espaço de escuta, acolhimento e cuidado. Psicoterapia e Avaliação Neuropsicológica para crianças, adolescentes e adultos. Atendimento presencial e online.';
+  const image = 'https://robertacunha.com.br/social/roberta-cunha-og-v1.png';
+  await expect(page).toHaveTitle(title);
+  const expected = [
+    ['property', 'og:title', title],
+    ['property', 'og:description', description],
+    ['property', 'og:url', 'https://robertacunha.com.br/'],
+    ['property', 'og:image', image],
+    ['property', 'og:image:width', '1200'],
+    ['property', 'og:image:height', '630'],
+    ['property', 'og:image:type', 'image/png'],
+    ['name', 'description', description],
+    ['name', 'twitter:card', 'summary_large_image'],
+    ['name', 'twitter:title', title],
+    ['name', 'twitter:description', description],
+    ['name', 'twitter:image', image],
+    ['name', 'twitter:url', 'https://robertacunha.com.br/'],
+  ];
+  for (const [attribute, name, content] of expected) {
+    const tag = page.locator(`meta[${attribute}="${name}"]`);
+    await expect(tag).toHaveCount(1);
+    await expect(tag).toHaveAttribute('content', content);
+  }
+  await expect(page.locator('link[rel="canonical"]')).toHaveCount(1);
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+    'href',
+    'https://robertacunha.com.br/',
+  );
+  await expect(page.locator('.footer-credit')).toHaveCount(1);
+  await expect(page.locator('.footer-credit')).toHaveAttribute(
+    'href',
+    'https://kyrosmarketing.com.br/',
+  );
+  await expect(page.locator('.footer-credit img')).toHaveAttribute(
+    'src',
+    '/brand/kyros-original.png',
+  );
+  const response = await request.get(new URL(image).pathname);
+  expect(response.status()).toBe(200);
+  expect(response.headers()['content-type']).toContain('image/png');
+  const metadata = await sharp(await response.body()).metadata();
+  expect(metadata.width).toBe(1200);
+  expect(metadata.height).toBe(630);
+  expect(metadata.format).toBe('png');
+});

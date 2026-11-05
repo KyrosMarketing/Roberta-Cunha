@@ -80,5 +80,25 @@ import { site, whatsapp } from '../data/site';
       </span>
       <span>Escuta, ciência e cuidado.</span>
     </div>
+    {site.agency.logo && (
+      <a
+        class="footer-credit"
+        href={site.agency.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Desenvolvido por Kyros (abre em nova aba)"
+      >
+        <span>Desenvolvido por</span>
+        <span class="footer-agency-logo">
+          <img
+            src={site.agency.logo.src}
+            alt={site.agency.logo.alt}
+            width={site.agency.logo.width}
+            height={site.agency.logo.height}
+            loading="lazy"
+          />
+        </span>
+      </a>
+    )}
   </div>
 </footer>

@@ -2,6 +2,27 @@ export const site = {
   // Primeira versão pública para revisão; liberar indexação somente após aprovação.
   reviewMode: true,
   name: 'Roberta Cunha',
+  seo: {
+    title: 'Roberta Cunha | Psicologia e Neuropsicologia em Curitiba',
+    description:
+      'Um espaço de escuta, acolhimento e cuidado. Psicoterapia e Avaliação Neuropsicológica para crianças, adolescentes e adultos. Atendimento presencial e online.',
+  },
+  agency: {
+    name: 'Kyros',
+    url: 'https://kyrosmarketing.com.br/',
+    // Arquivo original enviado pela agência, sem redesenho ou alteração de pixels.
+    logo: {
+      src: '/brand/kyros-original.png',
+      alt: 'Kyros',
+      width: 1254,
+      height: 1254,
+    } as null | {
+      src: string;
+      alt: string;
+      width: number;
+      height: number;
+    },
+  },
   fullName: 'Roberta da Cunha Harder',
   crp: '08/38333',
   url: 'https://robertacunha.com.br',
@@ -46,7 +67,12 @@ export const site = {
         '(max-width: 700px) calc(100vw - 55px), (max-width: 1350px) 44vw, 530px',
     },
     favicon: { src: '/brand/favicon.png', alt: '', width: 64, height: 64 },
-    social: null,
+    social: {
+      src: '/social/roberta-cunha-og-v1.png',
+      alt: 'Roberta Cunha — Psicologia e Neuropsicologia em Curitiba',
+      width: 1200,
+      height: 630,
+    },
   } as Record<
     'logo' | 'hero' | 'about' | 'favicon' | 'social',
     null | {

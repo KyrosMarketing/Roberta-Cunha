@@ -26,7 +26,7 @@ Menu mobile com estado expandido, Escape e gestão de foco. FAQ em `details/summ
 
 Fotografias reais e marca original fornecidas em `Arquivo 2.zip`, incorporadas em 5 de novembro de 2026. Retrato no sofá na hero e retrato próximo em Sobre, com versões responsivas AVIF/WebP. Logo escuro original no cabeçalho e rodapé, sem recoloração, recorte ou distorção; a versão branca é preservada para uso futuro. Favicon derivado da submarca original apenas por redimensionamento com margem transparente.
 
-A hero usa enquadramento em `58% 28%` e o retrato de Sobre em `50% 28%`. A exibição foi revisada em desktop e mobile. Nenhum rosto ou marca foi recriado por IA. O arquivo social dedicado e a aprovação final de uso/recortes ainda precisam ser confirmados.
+A hero usa enquadramento em `58% 28%` e o retrato de Sobre em `50% 28%`. A exibição foi revisada em desktop e mobile. Nenhum rosto ou marca foi recriado por IA. A aprovação final de uso/recortes ainda precisa ser confirmada. A imagem social dedicada de 1200 × 630 px foi composta com a marca original, fundo off-white, moldura rosé e linha terracota.
 
 ## Movimento
 
@@ -39,3 +39,7 @@ Cada bloco é desobservado após a primeira entrada; uma marcação persistente 
 A identificação profissional aparece na legenda sob a foto, alinhada à esquerda, com “Escuta, ciência e cuidado” à direita, admitindo quebra de linha em telas estreitas. A linha anterior sob os botões foi removida.
 
 Rodapé composto por identidade, endereço e contatos agrupados. E-mail, WhatsApp, ligação telefônica e Instagram continuam acessíveis. Privacidade, cookies e preferências compartilham uma faixa horizontal com quebra natural. No mobile, logotipo, textos e grupos ficam centralizados, com áreas de toque de pelo menos 44 px.
+
+## Crédito da agência
+
+Assinatura discreta e centralizada ao final do rodapé, com texto “Desenvolvido por” e a logo preta original da Kyros, sem alterações no PNG. A caixa de exibição compensa apenas a margem transparente do arquivo quadrado, mantendo a proporção e todos os traços. O conjunto é um único link externo para `https://kyrosmarketing.com.br/`, com nome acessível e foco visível.

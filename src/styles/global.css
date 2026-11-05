@@ -1443,3 +1443,40 @@ summary > span {
     white-space: nowrap;
   }
 }
+
+.footer-credit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  width: fit-content;
+  max-width: 100%;
+  min-height: 44px;
+  margin: 1rem auto 0;
+  font-size: 0.68rem;
+  color: var(--muted);
+  text-decoration: none;
+}
+/* A marca original é quadrada com margens transparentes amplas.
+   A caixa acomoda apenas a área útil, sem alterar o arquivo ou cortar seus traços. */
+.footer-agency-logo {
+  position: relative;
+  display: block;
+  flex: 0 0 91px;
+  width: 91px;
+  height: 21px;
+  overflow: hidden;
+}
+.footer-credit img {
+  position: absolute;
+  display: block;
+  width: 125.4px;
+  height: 125.4px;
+  max-width: none;
+  left: -17.5px;
+  top: -54.6px;
+}
+.footer-credit:hover > span {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
