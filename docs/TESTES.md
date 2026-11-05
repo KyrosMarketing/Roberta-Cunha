@@ -85,3 +85,17 @@ Retratos invertidos entre hero e Sobre com os mesmos arquivos responsivos e pont
 Nome corrigido para Roberta da Cunha Harder no cadastro central e na apresentação. Mantida a frase sobre respeito, atenção e sensibilidade. FAQ revisado para comunicação direta, sem referências ao briefing ou validação editorial; duração, modalidades de psicoterapia e público seguem os textos solicitados, sem acrescentar serviços.
 
 Build, tipos e 14 testes aprovados (19,7 s), incluindo oito larguras, Axe em estados estáveis, movimento reduzido e funcionamento sem JavaScript. Capturas de hero e Sobre atualizadas em desktop/mobile. Não foi executado novo Lighthouse nesta revisão.
+
+## Identificação da hero, rodapé e fluidez da rolagem
+
+Linha de identificação sob os botões removida; “Psicóloga • CRP 08/38333” passa a integrar a legenda abaixo da foto, à esquerda da frase institucional. Rodapé reorganizado em identidade, localização/contatos e faixa de privacidade, com centralização mobile. E-mail, ligação, Instagram e preferências continuam disponíveis; foi incluído também acesso explícito ao WhatsApp no grupo de contatos.
+
+Revisão visual do rodapé em 320, 390, 768 e 1440 px, com capturas em `docs/screenshots/footer-*.png`. A suíte de layout verifica centralização do logotipo nas larguras mobile e ausência de rolagem horizontal nas oito resoluções.
+
+A animação agora prepara apenas blocos fora da área visível, sem transição de ocultação, e os revela 120 px antes da entrada na tela. Transições de 300 ms, deslocamento de 6 px, sem delays por linha e sem medições ou eventos de scroll. Cada bloco é desobservado e marcado após a primeira entrada. Nenhuma propriedade de layout é animada.
+
+Os testes de rolagem em 390 e 1440 px registram eventos reais de transição, percorrem a página com wheel gradual e saltos rápidos em ambas as direções e verificam uma única entrada por bloco. Também verificam alteração da preferência de movimento em tempo de execução e conteúdo visível após recarregar com movimento reduzido. O teste aguarda a aplicação assíncrona do evento `matchMedia`, em vez de presumir que a atualização do navegador é síncrona.
+
+As verificações automatizadas não equivalem a medições em aparelhos físicos nem garantem 60 FPS em qualquer dispositivo. Não foi executado novo Lighthouse nesta revisão.
+
+Resultado final desta revisão: **14 testes aprovados em 22,7 s**, build estático, tipos e formatação aprovados. Sem violações Axe nos estados estáveis auditados e sem erros de console/rede nas verificações da landing page.

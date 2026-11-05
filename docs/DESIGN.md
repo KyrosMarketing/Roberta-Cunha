@@ -30,4 +30,12 @@ A hero usa enquadramento em `58% 28%` e o retrato de Sobre em `50% 28%`. A exibi
 
 ## Movimento
 
-Entradas pontuais de títulos, textos, imagens e cartões ao rolar, com fade e deslocamento vertical de 14 px durante 550 ms. Progressão de até 130 ms entre elementos próximos, uma vez por elemento. A hero mantém o carregamento direto para preservar a primeira dobra. Botões usam transições de cor, borda e sombra. Movimento reduzido desativa animações e transições; o conteúdo não depende de animações para aparecer.
+Entradas de blocos coerentes de conteúdo com transições CSS de opacidade e deslocamento de 6 px, durante 300 ms, sem atrasos entre linhas. O IntersectionObserver antecipa a entrada com margem de 120 px. A preparação fora da tela não é animada: somente a passagem ao estado visível recebe transição, evitando o efeito de aparecer, desaparecer e entrar novamente.
+
+Cada bloco é desobservado após a primeira entrada; uma marcação persistente impede repetições ao inverter a rolagem ou mudar preferências. Não há listener de scroll nem medições durante a rolagem. A primeira dobra permanece diretamente visível. Movimento reduzido desativa os efeitos e revela imediatamente qualquer bloco pendente. O foco por teclado também revela seu bloco sem esperar animação. Sem JavaScript ou IntersectionObserver, todo o conteúdo permanece visível.
+
+## Hero e rodapé
+
+A identificação profissional aparece na legenda sob a foto, alinhada à esquerda, com “Escuta, ciência e cuidado” à direita, admitindo quebra de linha em telas estreitas. A linha anterior sob os botões foi removida.
+
+Rodapé composto por identidade, endereço e contatos agrupados. E-mail, WhatsApp, ligação telefônica e Instagram continuam acessíveis. Privacidade, cookies e preferências compartilham uma faixa horizontal com quebra natural. No mobile, logotipo, textos e grupos ficam centralizados, com áreas de toque de pelo menos 44 px.

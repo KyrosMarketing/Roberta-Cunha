@@ -23,6 +23,15 @@ for (const width of [320, 375, 390, 430, 768, 1024, 1440, 1920]) {
       ),
     ).toBe(true);
     await expect(page.locator('h1')).toHaveCount(1);
+    await expect(page.locator('.hero-location')).toHaveCount(0);
+    await expect(page.locator('.hero-credentials')).toHaveText(
+      'Psicóloga • CRP 08/38333',
+    );
+    if (width <= 700) {
+      const logo = await page.locator('footer .footer-brand img').boundingBox();
+      expect(Math.abs(logo!.x + logo!.width / 2 - width / 2)).toBeLessThan(2);
+    }
+
     await expect(page.locator('main .portrait')).toHaveCount(2);
     for (const image of await page.locator('img').all()) {
       await image.scrollIntoViewIfNeeded();
@@ -205,41 +214,79 @@ test('conteúdo e FAQ funcionam sem JavaScript', async ({ browser }) => {
 });
 
 for (const width of [390, 1440]) {
-  test(`entradas suaves e movimento reduzido em ${width}px`, async ({
+  test(`rolagem lenta, rápida, reversa e movimento reduzido em ${width}px`, async ({
     page,
   }) => {
     await page.setViewportSize({ width, height: 900 });
-    await page.goto('/');
-    await expect(
-      page.locator('.image-note, .card-top svg, .hero-actions .arrow-link svg'),
-    ).toHaveCount(0);
-    await page.evaluate(() => {
-      const target = document.querySelector('.services-grid')!;
-      window.scrollTo({
-        top: target.getBoundingClientRect().top + scrollY - 220,
-        behavior: 'instant',
+    await page.addInitScript(() => {
+      const counts = new WeakMap<Element, number>();
+      const state = window as typeof window & { revealRuns: number[] };
+      state.revealRuns = [];
+      document.addEventListener('transitionrun', (event) => {
+        const target = event.target as Element;
+        if (
+          event.propertyName !== 'opacity' ||
+          !target.hasAttribute('data-reveal')
+        )
+          return;
+        const count = (counts.get(target) ?? 0) + 1;
+        counts.set(target, count);
+        state.revealRuns.push(count);
       });
     });
+    await page.goto('/');
+    const card = page.locator('.service-card').first();
+    await expect(card).toHaveAttribute('data-reveal', 'pending');
+    await card.scrollIntoViewIfNeeded();
+    await expect(card).toHaveAttribute('data-reveal', 'visible');
     await expect
       .poll(() =>
         page.evaluate(
           () =>
-            document
-              .getAnimations()
-              .filter(
-                (animation) => animation.effect?.getTiming().duration === 550,
-              ).length,
+            (window as typeof window & { revealRuns: number[] }).revealRuns
+              .length,
         ),
       )
       .toBeGreaterThan(0);
     await expect
       .poll(() => page.evaluate(() => document.getAnimations().length))
       .toBe(0);
-    await expect(page.locator('.service-card').first()).toBeVisible();
+    await expect(card).toHaveCSS('opacity', '1');
+    // Subida rápida, descida gradual com wheel e salto ao rodapé, depois reversão.
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+    for (let step = 0; step < 14; step++) {
+      await page.mouse.wheel(0, 180);
+      await page.waitForTimeout(35);
+    }
+    for (const bottom of [true, false, true]) {
+      await page.evaluate(
+        (toBottom) =>
+          window.scrollTo({
+            top: toBottom ? document.body.scrollHeight : 0,
+            behavior: 'instant',
+          }),
+        bottom,
+      );
+      await page.waitForTimeout(350);
+    }
+    expect(
+      await page.evaluate(() =>
+        Math.max(
+          0,
+          ...(window as typeof window & { revealRuns: number[] }).revealRuns,
+        ),
+      ),
+    ).toBe(1);
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
     await page.emulateMedia({ reducedMotion: 'reduce' });
+    await expect(page.locator('[data-reveal="pending"]')).toHaveCount(0);
     await page.reload();
-    await page.locator('.services-grid').scrollIntoViewIfNeeded();
+    await card.scrollIntoViewIfNeeded();
     expect(await page.evaluate(() => document.getAnimations().length)).toBe(0);
-    await expect(page.locator('.service-card').last()).toBeVisible();
+    await expect(card).toHaveCSS('opacity', '1');
   });
 }

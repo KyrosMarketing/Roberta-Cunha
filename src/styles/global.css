@@ -274,27 +274,7 @@ section.hero {
   gap: 1rem;
   margin-top: 2rem;
 }
-.hero-location {
-  border-top: 1px solid var(--line);
-  padding-top: 1.5rem;
-  margin-top: 2rem;
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  font-size: 0.74rem;
-  line-height: 1.8;
-}
-.hero-location small {
-  font-size: 0.7rem;
-  color: var(--muted);
-}
-.location-dot {
-  border: 1px solid var(--brown);
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  margin-top: 7px;
-}
+
 .hero-visual {
   position: relative;
   padding: 0 0 30px 16px;
@@ -884,9 +864,7 @@ body:has(footer:hover) .floating-contact {
   .hero-actions .button {
     font-size: 0.75rem;
   }
-  .hero-location {
-    font-size: 0.68rem;
-  }
+
   .intro-strip span:first-child {
     max-width: 120px;
   }
@@ -969,14 +947,7 @@ body:has(footer:hover) .floating-contact {
   .hero-actions .button {
     font-size: 0.82rem;
   }
-  .hero-location {
-    margin-top: 1.3rem;
-    padding-top: 1rem;
-    font-size: 0.75rem;
-  }
-  .hero-location small {
-    font-size: 0.7rem;
-  }
+
   .hero-visual {
     padding: 0 0 25px 10px;
   }
@@ -1266,11 +1237,7 @@ picture {
   border-bottom: 0;
   padding-bottom: 0;
 }
-.hero-location {
-  border-top: 0;
-  padding-top: 0;
-  margin-top: 1.5rem;
-}
+
 .button {
   transition:
     background var(--ease),
@@ -1302,4 +1269,165 @@ summary > span {
 }
 .hero-scroll:hover {
   color: var(--ink);
+}
+
+/* Identificação discreta, alinhada à base da fotografia. */
+.hero-visual {
+  padding-bottom: 0;
+}
+.hero-caption {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  padding-top: 1rem;
+}
+.hero-credentials {
+  font-size: 0.68rem;
+  color: var(--brown);
+}
+.hero-caption .visual-label {
+  position: static;
+  font-size: 0.55rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+/* Rodapé com identidade, contatos agrupados e faixa de privacidade. */
+.footer-grid {
+  grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.5fr);
+  gap: 5rem;
+  align-items: center;
+}
+.footer-identity p {
+  margin: 0.75rem 0 0;
+  color: var(--muted);
+}
+.footer-info .eyebrow {
+  margin: 0 0 0.65rem;
+  font-size: 0.62rem;
+}
+.footer-info address {
+  font-style: normal;
+  max-width: 530px;
+  font-size: 0.83rem;
+}
+.footer-contacts {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.2rem 1.5rem;
+  margin-top: 0.8rem;
+  font-size: 0.79rem;
+}
+.footer-contacts a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.footer-email {
+  overflow-wrap: anywhere;
+}
+.footer-phone {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.footer-meta {
+  margin-top: 2.5rem;
+  border-top: 1px solid #cbbcaf;
+  padding-top: 1rem;
+}
+.footer-legal {
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.1rem 1.5rem;
+  font-size: 0.72rem;
+}
+.footer-legal a,
+.footer-legal button {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.footer-bottom {
+  border: 0;
+  margin-top: 0.5rem;
+  padding-top: 0.75rem;
+}
+@media (max-width: 959px) {
+  .footer-grid {
+    gap: 2.5rem;
+  }
+}
+@media (max-width: 700px) {
+  .hero-caption {
+    gap: 0.4rem 0.8rem;
+  }
+  .hero-credentials {
+    font-size: 0.62rem;
+  }
+  .hero-caption .visual-label {
+    font-size: 0.48rem;
+    letter-spacing: 0.07em;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: 1.8rem;
+  }
+  .footer-identity {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .footer-info {
+    width: 100%;
+  }
+  .footer-info address {
+    max-width: 350px;
+    margin-inline: auto;
+    font-size: 0.78rem;
+  }
+  .footer-contacts {
+    justify-content: center;
+    gap: 0.1rem 1.25rem;
+    font-size: 0.76rem;
+  }
+  .footer-email {
+    flex-basis: 100%;
+    justify-content: center;
+  }
+  .footer-meta {
+    margin-top: 1.8rem;
+  }
+  .footer-legal {
+    justify-content: center;
+    gap: 0 1rem;
+    font-size: 0.68rem;
+  }
+  .footer-bottom {
+    align-items: center;
+    text-align: center;
+    padding-right: 0;
+    gap: 0.4rem;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal='pending'] {
+    opacity: 0;
+    transform: translate3d(0, 6px, 0);
+  }
+  [data-reveal='visible'] {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 300ms ease-out,
+      transform 300ms ease-out;
+  }
 }
