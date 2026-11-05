@@ -1,0 +1,92 @@
+---
+import '@fontsource/dm-sans/latin-400.css';
+import '@fontsource/dm-sans/latin-500.css';
+import '@fontsource/cormorant-garamond/latin-500.css';
+import '@fontsource/cormorant-garamond/latin-500-italic.css';
+import '../styles/global.css';
+import { site } from '../data/site';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CookieConsent from '../components/CookieConsent.astro';
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+const {
+  title = 'Roberta Cunha | Psicóloga e Avaliação Neuropsicológica em Curitiba',
+  description = 'Psicoterapia e Avaliação Neuropsicológica com Roberta Cunha, CRP 08/38333. Conheça os atendimentos e entre em contato. Consultório no Batel, Curitiba.',
+  noindex = false,
+} = Astro.props;
+const canonical = new URL(Astro.url.pathname, site.url).href;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#FCF8F5" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {(noindex || site.reviewMode) && (
+      <meta name="robots" content="noindex,follow" />
+    )}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={site.name} />
+    <meta
+      name="twitter:card"
+      content={site.assets.social ? 'summary_large_image' : 'summary'}
+    />
+    {site.assets.social && (
+      <meta
+        property="og:image"
+        content={new URL(site.assets.social.src, site.url).href}
+      />
+    )}
+    <link rel="icon" href={site.assets.favicon?.src ?? 'data:,'} />
+    {site.integrations.searchConsole && (
+      <meta
+        name="google-site-verification"
+        content={site.integrations.searchConsole}
+      />
+    )}
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">
+      Pular para o conteúdo
+    </a>
+    <Header />
+    <slot />
+    <Footer />
+    <CookieConsent />
+    <script>
+      document
+        .querySelectorAll<HTMLAnchorElement>('[data-contact]')
+        .forEach((link) =>
+          link.addEventListener('click', () => {
+            try {
+              const consent = JSON.parse(
+                localStorage.getItem('rc-consent') || 'null',
+              );
+              if (consent?.version === 1 && consent.optional === true) {
+                window.dispatchEvent(
+                  new CustomEvent('rc:contact', {
+                    detail: { channel: 'whatsapp' },
+                  }),
+                );
+              }
+            } catch {
+              /* Não instrumentar se a preferência não estiver disponível. */
+            }
+          }),
+        );
+    </script>
+  </body>
+</html>

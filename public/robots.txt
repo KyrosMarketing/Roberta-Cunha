@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://robertacunha.com.br/sitemap.xml

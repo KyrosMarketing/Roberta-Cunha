@@ -1,0 +1,62 @@
+---
+import { site } from '../data/site';
+---
+
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <a class="footer-brand" href="/#inicio">
+        {site.assets.logo ? (
+          <img
+            src={site.assets.logo.src}
+            alt={site.assets.logo.alt}
+            width={site.assets.logo.width}
+            height={site.assets.logo.height}
+          />
+        ) : (
+          site.name
+        )}
+      </a>
+      <p>
+        {site.fullName} · Psicóloga
+        <br />
+        CRP {site.crp}
+      </p>
+    </div>
+    <div>
+      <p>{site.address}</p>
+      <a href={`mailto:${site.email}`}>{site.email}</a>
+      <br />
+      <a href={`tel:+${site.whatsapp}`}>{site.phone}</a>
+      <br />
+      <a href={site.instagram} target="_blank" rel="noopener noreferrer">
+        Instagram{' '}
+        <svg
+          class="icon"
+          viewBox="0 0 24 24"
+          width="20"
+          height="20"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.4"
+          aria-hidden="true"
+        >
+          <path d="M5 19 19 5M5 5h14v14" />
+        </svg>
+      </a>
+    </div>
+    <div class="footer-legal">
+      <a href="/politica-de-privacidade/">Política de Privacidade</a>
+      <a href="/politica-de-cookies/">Política de Cookies</a>
+      <button class="text-button" data-cookie-settings>
+        Preferências de cookies
+      </button>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>
+      © {new Date().getFullYear()} {site.name}. Todos os direitos reservados.
+    </span>
+    <span>Escuta, ciência e cuidado.</span>
+  </div>
+</footer>

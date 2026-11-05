@@ -1,0 +1,70 @@
+<div
+  class="cookie-panel"
+  id="cookie-panel"
+  role="region"
+  aria-label="Preferências de privacidade"
+  hidden
+>
+  <div>
+    <strong>A sua privacidade importa.</strong>
+    <p>
+      Este site não carrega ferramentas de análise ou publicidade. Você pode
+      registrar sua preferência para cookies opcionais.{' '}
+      <a href="/politica-de-cookies/">Entenda o uso de cookies</a>.
+    </p>
+  </div>
+  <div class="cookie-actions">
+    <button class="button outline" data-consent="rejected">
+      Rejeitar opcionais
+    </button>
+    <button class="button" data-consent="accepted">
+      Aceitar opcionais
+    </button>
+    <button class="text-button" id="cookie-close">
+      Fechar
+    </button>
+  </div>
+</div>
+<script>
+  const panel = document.querySelector<HTMLElement>('#cookie-panel');
+  let trigger: HTMLElement | null = null;
+  const show = () => {
+    trigger = document.activeElement as HTMLElement;
+    if (panel) {
+      panel.hidden = false;
+      panel.querySelector<HTMLButtonElement>('button')?.focus();
+    }
+  };
+  const hide = () => {
+    if (panel) panel.hidden = true;
+    trigger?.focus();
+  };
+  document
+    .querySelectorAll('[data-cookie-settings]')
+    .forEach((button) => button.addEventListener('click', show));
+  document.querySelector('#cookie-close')?.addEventListener('click', hide);
+  panel?.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') hide();
+  });
+  panel
+    ?.querySelectorAll<HTMLButtonElement>('[data-consent]')
+    .forEach((button) =>
+      button.addEventListener('click', () => {
+        try {
+          localStorage.setItem(
+            'rc-consent',
+            JSON.stringify({
+              version: 1,
+              optional: button.dataset.consent === 'accepted',
+              updatedAt: new Date().toISOString(),
+            }),
+          );
+        } catch {
+          /* A preferência vale nesta visita mesmo sem armazenamento. */
+        }
+        // Não carregar tags: IDs e autorização jurídica ainda estão pendentes.
+        hide();
+      }),
+    );
+  // Sem tags opcionais ativas, não é necessário interromper a visita com um banner.
+</script>

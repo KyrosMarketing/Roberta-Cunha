@@ -1,0 +1,502 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactLink from '../components/ContactLink.astro';
+import Portrait from '../components/Portrait.astro';
+import { site, services, process, faqs, maps, whatsapp } from '../data/site';
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.fullName,
+  jobTitle: 'Psicóloga',
+  url: site.url,
+  telephone: site.phone,
+  email: site.email,
+  sameAs: [site.instagram],
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Av. do Batel, 1230 — Bloco BTC, 6º andar, sala 601',
+    addressLocality: 'Curitiba',
+    addressRegion: 'PR',
+    addressCountry: 'BR',
+  },
+};
+---
+
+<Layout>
+  <script
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify(schema).replace(/</g, '\\u003c')}
+  />
+  <main id="conteudo">
+    <section class="hero container" id="inicio" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">
+          <span class="small-rule" aria-hidden="true"></span> PSICOLOGIA E
+          NEUROPSICOLOGIA
+        </p>
+        <h1 id="hero-title">
+          Um espaço de escuta.
+          <br />
+          Um cuidado com <em>a sua história.</em>
+        </h1>
+        <p class="hero-description">
+          Psicoterapia e Avaliação Neuropsicológica com um olhar atento às
+          particularidades de cada pessoa.
+        </p>
+        <div class="hero-actions">
+          <ContactLink />
+          <a class="arrow-link" href="#servicos">
+            Conhecer os atendimentos{' '}
+            <span aria-hidden="true">
+              <svg
+                class="icon"
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.4"
+                aria-hidden="true"
+              >
+                <path d="M12 4v16m-6-6 6 6 6-6" />
+              </svg>
+            </span>
+          </a>
+        </div>
+        <div class="hero-location">
+          <span class="location-dot" aria-hidden="true"></span>
+          <span>
+            Roberta Cunha · CRP {site.crp}
+            <br />
+            <small>Batel, Curitiba · Atendimento presencial e online*</small>
+          </span>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <Portrait />
+        <div class="image-note">
+          <span>
+            Respeito ao seu tempo.
+            <br />
+            <em>Atenção à sua singularidade.</em>
+          </span>
+          <span class="note-mark" aria-hidden="true">
+            <svg
+              class="icon"
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.4"
+              aria-hidden="true"
+            >
+              <path d="M5 19 19 5M5 5h14v14" />
+            </svg>
+          </span>
+        </div>
+        <span class="visual-label">
+          ESCUTA &nbsp; / &nbsp; CIÊNCIA &nbsp; / &nbsp; CUIDADO
+        </span>
+      </div>
+    </section>
+    <div class="intro-strip">
+      <div class="container">
+        <span>UM ENCONTRO COM O CUIDADO</span>
+        <p>
+          Você não precisa ter todas as respostas
+          <br />
+          para dar o <em>primeiro passo.</em>
+        </p>
+        <span class="strip-symbol" aria-hidden="true">
+          <svg
+            class="icon"
+            viewBox="0 0 24 24"
+            width="20"
+            height="20"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.4"
+            aria-hidden="true"
+          >
+            <path d="M19 5 5 19M5 5v14h14" />
+          </svg>
+        </span>
+      </div>
+    </div>
+    <section
+      class="section container"
+      id="servicos"
+      aria-labelledby="services-title"
+    >
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">01 / ATENDIMENTOS</p>
+          <h2 id="services-title">
+            Diferentes caminhos.
+            <br />
+            <em>O mesmo cuidado.</em>
+          </h2>
+        </div>
+        <p>
+          Para crianças, adolescentes e adultos. Um acompanhamento pensado a
+          partir da sua história, da sua fase de vida e das suas necessidades.
+        </p>
+      </div>
+      <div class="services-grid">
+        {services.map((service) => (
+          <article class="service-card">
+            <div class="card-top">
+              <span>{service.number}</span>
+              <span aria-hidden="true">
+                <svg
+                  class="icon"
+                  viewBox="0 0 24 24"
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.4"
+                  aria-hidden="true"
+                >
+                  <path d="M5 19 19 5M5 5h14v14" />
+                </svg>
+              </span>
+            </div>
+            <p class="eyebrow">{service.eyebrow}</p>
+            <h3>{service.title}</h3>
+            <p>{service.description}</p>
+            <ul class="tags">
+              {service.tags.map((tag) => (
+                <li>{tag}</li>
+              ))}
+            </ul>
+            <a class="arrow-link" href={`#${service.id}`}>
+              Conhecer {service.title.toLowerCase()}{' '}
+              <span aria-hidden="true">
+                <svg
+                  class="icon"
+                  viewBox="0 0 24 24"
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.4"
+                  aria-hidden="true"
+                >
+                  <path d="M4 12h16m-6-6 6 6-6 6" />
+                </svg>
+              </span>
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+    <section class="care-section">
+      <div class="container">
+        {services.map((service) => (
+          <article class="detail-row" id={service.id}>
+            <div>
+              <p class="eyebrow">
+                {service.number === '01'
+                  ? 'PSICOTERAPIA / TCC'
+                  : 'AVALIAÇÃO NEUROPSICOLÓGICA'}
+              </p>
+              <h2>
+                {service.number === '01' ? (
+                  <>
+                    Dar lugar ao que
+                    <br />
+                    <em>você sente.</em>
+                  </>
+                ) : (
+                  <>
+                    Compreender com atenção.
+                    <br />
+                    <em>Orientar com cuidado.</em>
+                  </>
+                )}
+              </h2>
+            </div>
+            <div class="detail-copy">
+              <p>{service.detail}</p>
+              <p>{service.extra}</p>
+              <ContactLink
+                kind={service.kind}
+                label={service.cta}
+                variant="outline"
+              />
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+    <section
+      class="section container about-grid"
+      id="sobre"
+      aria-labelledby="about-title"
+    >
+      <div class="about-visual">
+        <Portrait placement="about" />
+        <span class="photo-footnote">Presença e escuta em cada encontro.</span>
+      </div>
+      <div class="about-copy">
+        <p class="eyebrow">02 / SOBRE A ROBERTA</p>
+        <h2 id="about-title">
+          Prazer, <em>Roberta.</em>
+        </h2>
+        <p class="lead">
+          Cada história merece ser recebida com respeito, atenção e
+          sensibilidade.
+        </p>
+        <p>
+          Sou Roberta da Silva Cunha, psicóloga, CRP {site.crp}. Meu trabalho
+          reúne Psicoterapia e Avaliação Neuropsicológica, com atenção às
+          particularidades de cada pessoa e compromisso com um cuidado
+          responsável.
+        </p>
+        <p>{site.education}</p>
+        <p>
+          Na psicoterapia, a referência informada é a Terapia
+          Cognitivo-Comportamental: um caminho para compreender a relação entre
+          pensamentos, emoções e comportamentos.
+        </p>
+        <div class="credentials">
+          <span>
+            PSICÓLOGA
+            <br />
+            <strong>CRP {site.crp}</strong>
+          </span>
+          <span>
+            CONSULTÓRIO
+            <br />
+            <strong>Batel · Curitiba</strong>
+          </span>
+        </div>
+        <p class="editorial-note">
+          Formação, abordagem e apresentação profissional sujeitas à validação
+          final da Roberta.
+        </p>
+      </div>
+    </section>
+    <section
+      class="process-section"
+      id="como-funciona"
+      aria-labelledby="process-title"
+    >
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">03 / COMO FUNCIONA</p>
+            <h2 id="process-title">
+              O cuidado começa
+              <br />
+              <em>com uma conversa.</em>
+            </h2>
+          </div>
+          <p>
+            Um processo construído com clareza, acolhimento e respeito ao seu
+            momento.
+          </p>
+        </div>
+        <ol class="steps">
+          {process.map((step, index) => (
+            <li>
+              <span class="step-number">0{index + 1}</span>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </li>
+          ))}
+        </ol>
+        <p class="process-note">
+          Psicoterapia: sessões de aproximadamente 60 minutos. Frequência,
+          modalidades e procedimentos são alinhados com a profissional. Na
+          avaliação, o percurso é individualizado, sem número de encontros
+          pré-definido aqui.
+        </p>
+      </div>
+    </section>
+    <section
+      class="section container faq-grid"
+      id="faq"
+      aria-labelledby="faq-title"
+    >
+      <div class="faq-intro">
+        <p class="eyebrow">04 / DÚVIDAS FREQUENTES</p>
+        <h2 id="faq-title">
+          Para chegar
+          <br />
+          <em>com mais clareza.</em>
+        </h2>
+        <p>Algumas respostas para ajudar você a conhecer os atendimentos.</p>
+        <a class="arrow-link" href="#contato">
+          Ainda tem uma dúvida?{' '}
+          <span aria-hidden="true">
+            <svg
+              class="icon"
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.4"
+              aria-hidden="true"
+            >
+              <path d="M5 19 19 5M5 5h14v14" />
+            </svg>
+          </span>
+        </a>
+      </div>
+      <div class="faq-list">
+        {faqs.map(([question, answer]) => (
+          <details>
+            <summary>
+              {question}
+              <span aria-hidden="true">+</span>
+            </summary>
+            <p>{answer}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+    <section
+      class="contact-section"
+      id="contato"
+      aria-labelledby="contact-title"
+    >
+      <div class="container contact-grid">
+        <div>
+          <p class="eyebrow">05 / CONTATO</p>
+          <h2 id="contact-title">
+            Um primeiro passo.
+            <br />
+            <em>No seu tempo.</em>
+          </h2>
+          <p>
+            Para conhecer os atendimentos, esclarecer dúvidas ou consultar
+            horários, fale com a Roberta.
+          </p>
+          <ContactLink />
+          <p class="contact-reminder">
+            No primeiro contato, não é necessário compartilhar informações
+            clínicas ou dados sensíveis.
+          </p>
+        </div>
+        <div class="contact-details">
+          <div>
+            <p class="eyebrow">CONSULTÓRIO NO BATEL</p>
+            <address>{site.address}</address>
+            <a
+              class="arrow-link"
+              href={maps}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Abrir localização no Google Maps{' '}
+              <span aria-hidden="true">
+                <svg
+                  class="icon"
+                  viewBox="0 0 24 24"
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.4"
+                  aria-hidden="true"
+                >
+                  <path d="M5 19 19 5M5 5h14v14" />
+                </svg>
+              </span>
+            </a>
+          </div>
+          <div class="contact-pair">
+            <div>
+              <p class="eyebrow">WHATSAPP</p>
+              <a href={`tel:+${site.whatsapp}`}>{site.phone}</a>
+            </div>
+            <div>
+              <p class="eyebrow">INSTAGRAM</p>
+              <a
+                href={site.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                @psirobertacunha{' '}
+                <svg
+                  class="icon"
+                  viewBox="0 0 24 24"
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.4"
+                  aria-hidden="true"
+                >
+                  <path d="M5 19 19 5M5 5h14v14" />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div>
+            <p class="eyebrow">E-MAIL</p>
+            <a href={`mailto:${site.email}`}>{site.email}</a>
+          </div>
+          <p class="editorial-note">
+            *Atendimentos presenciais e online informados no briefing. Confirme
+            a disponibilidade da modalidade para cada serviço e faixa etária.
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="closing container">
+      <p>Há espaço para a sua história.</p>
+      <a href="#servicos" class="arrow-link">
+        Encontre o seu caminho de cuidado{' '}
+        <span aria-hidden="true">
+          <svg
+            class="icon"
+            viewBox="0 0 24 24"
+            width="20"
+            height="20"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.4"
+            aria-hidden="true"
+          >
+            <path d="M12 20V4m-6 6 6-6 6 6" />
+          </svg>
+        </span>
+      </a>
+    </section>
+  </main>
+  <a
+    class="floating-contact"
+    data-contact
+    href={whatsapp()}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Conversar com Roberta pelo WhatsApp (nova aba)"
+  >
+    <svg
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+      aria-hidden="true"
+    >
+      <path d="M20 11.5a8 8 0 0 1-11.6 7.2L4 20l1.3-4.4A8 8 0 1 1 20 11.5Z" />
+      <path d="M9 8c0 3 2 5 5 6l1-1-2-1-.7.7c-1.2-.6-2.1-1.5-2.7-2.7L10.3 9 9 8Z" />
+    </svg>
+  </a>
+  <script>
+    const footer = document.querySelector('footer');
+    const floating = document.querySelector('.floating-contact');
+    if (footer && floating)
+      new IntersectionObserver(([entry]) => {
+        floating.classList.toggle('footer-visible', entry.isIntersecting);
+      }).observe(footer);
+  </script>
+</Layout>

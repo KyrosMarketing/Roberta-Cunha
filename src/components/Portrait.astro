@@ -1,0 +1,40 @@
+---
+import { site } from '../data/site';
+interface Props {
+  placement?: 'hero' | 'about';
+}
+const { placement = 'hero' } = Astro.props;
+const asset = site.assets[placement];
+---
+
+{asset ? (
+  <picture>
+    {asset.avifSrcSet && (
+      <source type="image/avif" srcset={asset.avifSrcSet} sizes={asset.sizes} />
+    )}
+    <img
+      class={`portrait ${placement}`}
+      src={asset.src}
+      alt={asset.alt}
+      srcset={asset.srcSet}
+      sizes={asset.sizes}
+      width={asset.width}
+      height={asset.height}
+      loading={placement === 'hero' ? 'eager' : 'lazy'}
+      fetchpriority={placement === 'hero' ? 'high' : 'auto'}
+    />
+  </picture>
+) : (
+  <div
+    class={`portrait-placeholder ${placement}`}
+    role="img"
+    aria-label="Espaço reservado para fotografia profissional real da Roberta"
+  >
+    <div class="placeholder-line" aria-hidden="true"></div>
+    <span class="placeholder-caption">
+      FOTOGRAFIA DA ROBERTA
+      <br />
+      <small>Arquivo original a inserir</small>
+    </span>
+  </div>
+)}

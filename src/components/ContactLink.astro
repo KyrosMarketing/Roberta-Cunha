@@ -1,0 +1,38 @@
+---
+import { whatsapp, type ContactKind } from '../data/site';
+interface Props {
+  kind?: ContactKind;
+  label?: string;
+  variant?: string;
+}
+const {
+  kind = 'general',
+  label = 'Agendar meu atendimento',
+  variant = '',
+} = Astro.props;
+---
+
+<a
+  class:list={['button', variant]}
+  href={whatsapp(kind)}
+  target="_blank"
+  rel="noopener noreferrer"
+  data-contact
+  aria-label={`${label} pelo WhatsApp (abre em nova aba)`}
+>
+  <span>{label}</span>
+  <span aria-hidden="true">
+    <svg
+      class="icon"
+      viewBox="0 0 24 24"
+      width="20"
+      height="20"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.4"
+      aria-hidden="true"
+    >
+      <path d="M5 19 19 5M5 5h14v14" />
+    </svg>
+  </span>
+</a>

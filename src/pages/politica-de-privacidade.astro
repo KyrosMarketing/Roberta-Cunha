@@ -1,0 +1,86 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site } from '../data/site';
+---
+
+<Layout title="Política de Privacidade | Roberta Cunha" noindex>
+  <main id="conteudo" class="container legal">
+    <p class="eyebrow">TRANSPARÊNCIA E CUIDADO</p>
+    <h1>Política de Privacidade</h1>
+    <p class="legal-notice">
+      Documento preliminar para revisão da responsável e, quando necessário,
+      assessoria jurídica. A publicação depende da confirmação dos tratamentos,
+      fornecedores e responsabilidades.
+    </p>
+    <h2>Sobre este site</h2>
+    <p>
+      Este site apresenta os atendimentos de {site.fullName}, psicóloga, CRP{' '}
+      {site.crp}. Para questões de privacidade, entre em contato pelo e-mail{' '}
+      <a href={`mailto:${site.email}`}>{site.email}</a>. A identificação formal
+      do controlador e de eventual encarregado será confirmada antes da
+      publicação.
+    </p>
+    <h2>Informações durante a navegação</h2>
+    <p>
+      Não há formulário clínico, cadastro ou coleta de sintomas neste site.
+      Ferramentas de análise e publicidade estão desativadas. A hospedagem
+      poderá tratar dados técnicos de acesso para operação e segurança; o
+      escopo, os fornecedores e as condições de retenção devem ser definidos
+      antes da publicação.
+    </p>
+    <h2>Contato por plataformas externas</h2>
+    <p>
+      Ao abrir WhatsApp, Instagram, e-mail ou Google Maps, você passa a utilizar
+      outro serviço, sujeito às práticas e políticas do respectivo provedor. Os
+      links não carregam mapas, redes sociais ou rastreadores incorporados nesta
+      página. Evite compartilhar dados de saúde no primeiro contato; o meio
+      adequado para informações clínicas deverá ser orientado pela profissional.
+    </p>
+    <h2>Preferências locais</h2>
+    <p>
+      Se você registrar uma escolha sobre cookies opcionais, o navegador poderá
+      armazenar essa preferência localmente. O registro não contém informações
+      clínicas. Consulte a{' '}
+      <a href="/politica-de-cookies/">Política de Cookies</a>.
+    </p>
+    <h2>Direitos e solicitações</h2>
+    <p>
+      Você pode encaminhar pedidos de esclarecimento, acesso, correção ou
+      eliminação de dados e outros direitos previstos na legislação aplicável
+      pelo contato acima. A resposta considerará a identidade do solicitante, as
+      obrigações legais e profissionais e a natureza do tratamento.
+    </p>
+    <h2>Itens a confirmar antes da publicação</h2>
+    <ul>
+      <li>
+        Identificação e responsabilidades do controlador e eventual encarregado.
+      </li>
+      <li>
+        Fornecedores, operações efetivas, bases legais e eventuais
+        transferências internacionais.
+      </li>
+      <li>Critérios de retenção, segurança e atendimento às solicitações.</li>
+      <li>
+        Eventual ativação de ferramentas opcionais, após análise específica de
+        privacidade.
+      </li>
+    </ul>
+    <a class="arrow-link" href="/">
+      Voltar à página inicial{' '}
+      <span aria-hidden="true">
+        <svg
+          class="icon"
+          viewBox="0 0 24 24"
+          width="20"
+          height="20"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.4"
+          aria-hidden="true"
+        >
+          <path d="M20 12H4m6-6-6 6 6 6" />
+        </svg>
+      </span>
+    </a>
+  </main>
+</Layout>
