@@ -215,49 +215,88 @@ test('conteúdo e FAQ funcionam sem JavaScript', async ({ browser }) => {
 });
 
 for (const width of [390, 1440]) {
-  test(`rolagem lenta, rápida, reversa e movimento reduzido em ${width}px`, async ({
+  test(`entradas progressivas, retorno às seções e movimento reduzido em ${width}px`, async ({
     page,
   }) => {
     await page.setViewportSize({ width, height: 900 });
     await page.addInitScript(() => {
-      const counts = new WeakMap<Element, number>();
-      const state = window as typeof window & { revealRuns: number[] };
-      state.revealRuns = [];
+      const state = window as typeof window & {
+        cardRuns: number;
+        unsafeResets: number;
+      };
+      state.cardRuns = 0;
+      state.unsafeResets = 0;
       document.addEventListener('transitionrun', (event) => {
-        const target = event.target as Element;
         if (
-          event.propertyName !== 'opacity' ||
-          !target.hasAttribute('data-reveal')
+          event.propertyName === 'opacity' &&
+          event.target === document.querySelector('.service-card')
         )
-          return;
-        const count = (counts.get(target) ?? 0) + 1;
-        counts.set(target, count);
-        state.revealRuns.push(count);
+          state.cardRuns++;
+      });
+      new MutationObserver((records) => {
+        for (const record of records) {
+          const element = record.target as HTMLElement;
+          if (element.dataset.reveal !== 'pending') continue;
+          const rect = element.getBoundingClientRect();
+          if (rect.bottom > 0 && rect.top < innerHeight) state.unsafeResets++;
+        }
+      }).observe(document, {
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['data-reveal'],
       });
     });
     await page.goto('/');
     const card = page.locator('.service-card').first();
+    await expect(card).toHaveAttribute('data-reveal', 'pending');
+    const height = await card.evaluate(
+      (el) => (el as HTMLElement).offsetHeight,
+    );
+    await card.scrollIntoViewIfNeeded();
+    await expect(card).toHaveAttribute('data-reveal', 'visible');
+    await expect
+      .poll(() =>
+        page.evaluate(
+          () => (window as typeof window & { cardRuns: number }).cardRuns,
+        ),
+      )
+      .toBe(1);
+    await expect(card).toHaveCSS('opacity', '1');
+    expect(await card.evaluate((el) => (el as HTMLElement).offsetHeight)).toBe(
+      height,
+    );
+    // A saída para além da margem segura rearma o elemento; voltar realmente repete a entrada.
+    await page.evaluate(() =>
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'instant' }),
+    );
     await expect(card).toHaveAttribute('data-reveal', 'pending');
     await card.scrollIntoViewIfNeeded();
     await expect(card).toHaveAttribute('data-reveal', 'visible');
     await expect
       .poll(() =>
         page.evaluate(
-          () =>
-            (window as typeof window & { revealRuns: number[] }).revealRuns
-              .length,
+          () => (window as typeof window & { cardRuns: number }).cardRuns,
         ),
       )
-      .toBeGreaterThan(0);
-    await expect
-      .poll(() => page.evaluate(() => document.getAnimations().length))
-      .toBe(0);
-    await expect(card).toHaveCSS('opacity', '1');
-    // Subida rápida, descida gradual com wheel e salto ao rodapé, depois reversão.
+      .toBe(2);
+    // Percurso por títulos, parágrafos, fotografia e CTA, sem alvos aninhados.
+    for (const selector of [
+      '#services-title',
+      '#psicoterapia .detail-copy > p',
+      '#psicoterapia .button',
+      '#sobre .about-visual',
+      '#sobre .lead',
+      '#contato h2',
+    ]) {
+      const target = page.locator(selector).first();
+      await target.scrollIntoViewIfNeeded();
+      await expect(target).toHaveAttribute('data-reveal', 'visible');
+      await expect(target).toHaveCSS('opacity', '1');
+    }
     await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
     for (let step = 0; step < 14; step++) {
       await page.mouse.wheel(0, 180);
-      await page.waitForTimeout(35);
+      await page.waitForTimeout(40);
     }
     for (const bottom of [true, false, true]) {
       await page.evaluate(
@@ -268,23 +307,20 @@ for (const width of [390, 1440]) {
           }),
         bottom,
       );
-      await page.waitForTimeout(350);
+      await page.waitForTimeout(100);
     }
     expect(
-      await page.evaluate(() =>
-        Math.max(
-          0,
-          ...(window as typeof window & { revealRuns: number[] }).revealRuns,
-        ),
+      await page.evaluate(
+        () => (window as typeof window & { unsafeResets: number }).unsafeResets,
       ),
-    ).toBe(1);
+    ).toBe(0);
     expect(
       await page.evaluate(
         () => document.documentElement.scrollWidth <= innerWidth,
       ),
     ).toBe(true);
     await page.emulateMedia({ reducedMotion: 'reduce' });
-    await expect(page.locator('[data-reveal="pending"]')).toHaveCount(0);
+    await expect(page.locator('[data-reveal]')).toHaveCount(0);
     await page.reload();
     await card.scrollIntoViewIfNeeded();
     expect(await page.evaluate(() => document.getAnimations().length)).toBe(0);

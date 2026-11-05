@@ -1,50 +1,128 @@
 <script>
   const preference = matchMedia('(prefers-reduced-motion: reduce)');
-  // Blocos coerentes em vez de animar cada linha de texto separadamente.
+  // Escolha de alvos sem sobrepor pais e filhos animados.
   const targets = document.querySelectorAll<HTMLElement>(
-    'main .section-heading, main .service-card, main .detail-row, main .about-visual, main .about-copy, main .steps, main .faq-intro, main .faq-list, main .contact-grid, main .closing',
+    [
+      '.hero-copy > .eyebrow',
+      '.hero-copy > h1',
+      '.hero-description',
+      '.hero-actions',
+      '.hero-visual',
+      '.intro-strip .container > p',
+      '.section-heading .eyebrow',
+      '.section-heading h2',
+      '.section-heading > p',
+      '.service-card',
+      '.detail-row > div:first-child > .eyebrow',
+      '.detail-row h2',
+      '.detail-copy > p',
+      '.detail-copy > .button',
+      '.about-visual',
+      '.about-copy > *',
+      '.steps > li',
+      '.process-note',
+      '.faq-intro > *',
+      '.faq-list',
+      '.contact-grid > div:first-child > *',
+      '.contact-details',
+      '.closing > *',
+    ].join(', '),
   );
-  const seen = new WeakSet<Element>();
-  let observer: IntersectionObserver | undefined;
+  let entrance: IntersectionObserver | undefined;
+  let outside: IntersectionObserver | undefined;
+
   const reveal = (target: HTMLElement, immediate = false) => {
-    seen.add(target);
-    observer?.unobserve(target);
-    if (immediate) target.removeAttribute('data-reveal');
-    else target.dataset.reveal = 'visible';
+    if (immediate) {
+      target.removeAttribute('data-reveal');
+      target.getAnimations?.().forEach((animation) => animation.finish());
+    } else if (target.dataset.reveal === 'pending') {
+      target.dataset.reveal = 'entering';
+    }
+  };
+  const clear = () => {
+    entrance?.disconnect();
+    outside?.disconnect();
+    targets.forEach((target) => {
+      target.removeAttribute('data-reveal');
+      target.style.removeProperty('--reveal-delay');
+      target.style.removeProperty('--reveal-duration');
+      target.style.removeProperty('--reveal-offset');
+    });
   };
   const setup = () => {
-    observer?.disconnect();
-    if (preference.matches || !('IntersectionObserver' in window)) {
-      targets.forEach((target) => reveal(target, true));
-      return;
-    }
-    observer = new IntersectionObserver(
+    clear();
+    if (preference.matches || !('IntersectionObserver' in window)) return;
+    entrance = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) reveal(entry.target as HTMLElement);
         });
       },
-      { threshold: 0, rootMargin: '120px 0px' },
+      { threshold: 0 },
     );
-    // Uma medição inicial, sem listeners ou cálculos durante o scroll.
+    // Rearmar somente fora de uma margem segura: nunca ocultar conteúdo ainda visível.
+    outside = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const target = entry.target as HTMLElement;
+          if (
+            !entry.isIntersecting &&
+            !target.contains(document.activeElement)
+          ) {
+            target.dataset.reveal = 'pending';
+          }
+        });
+      },
+      { threshold: 0, rootMargin: '160px 0px' },
+    );
+
     targets.forEach((target) => {
-      if (
-        seen.has(target) ||
-        target.getBoundingClientRect().top < innerHeight + 120
-      ) {
-        reveal(target, true);
-        return;
+      const photo = target.matches('.hero-visual, .about-visual');
+      let delay = target.matches('p:not(.eyebrow)') ? 100 : 0;
+      if (target.matches('.button, .arrow-link, .hero-actions')) delay = 180;
+      if (target.matches('.service-card, .steps > li')) {
+        const index = Array.from(target.parentElement!.children).indexOf(
+          target,
+        );
+        delay = (index % 3) * 100;
       }
-      target.dataset.reveal = 'pending';
-      observer?.observe(target);
+      target.style.setProperty('--reveal-delay', `${delay}ms`);
+      target.style.setProperty('--reveal-duration', photo ? '750ms' : '650ms');
+      target.style.setProperty('--reveal-offset', photo ? '32px' : '28px');
+      // Primeira dobra, restauração de scroll e imagem LCP já visíveis não são ocultadas.
+      const rect = target.getBoundingClientRect();
+      if (rect.bottom <= 0 || rect.top >= innerHeight)
+        target.dataset.reveal = 'pending';
+      else target.dataset.reveal = 'visible';
+      entrance?.observe(target);
+      outside?.observe(target);
     });
   };
+  targets.forEach((target) => {
+    target.addEventListener('transitionend', (event) => {
+      if (
+        event.target === target &&
+        event.propertyName === 'opacity' &&
+        target.dataset.reveal === 'entering'
+      ) {
+        target.dataset.reveal = 'visible';
+      }
+    });
+  });
   document.addEventListener('focusin', (event) => {
     const target = (event.target as Element).closest<HTMLElement>(
-      '[data-reveal="pending"]',
+      '[data-reveal]',
     );
     if (target) reveal(target, true);
   });
   preference.addEventListener('change', setup);
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) {
+      // Evita retomar uma animação atrasada sobre conteúdo já em leitura.
+      targets.forEach((target) => {
+        if (target.dataset.reveal === 'entering') reveal(target, true);
+      });
+    }
+  });
   setup();
 </script>

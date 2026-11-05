@@ -30,9 +30,11 @@ A hero usa enquadramento em `58% 28%` e o retrato de Sobre em `50% 28%`. A exibi
 
 ## Movimento
 
-Entradas de blocos coerentes de conteúdo com transições CSS de opacidade e deslocamento de 6 px, durante 300 ms, sem atrasos entre linhas. O IntersectionObserver antecipa a entrada com margem de 120 px. A preparação fora da tela não é animada: somente a passagem ao estado visível recebe transição, evitando o efeito de aparecer, desaparecer e entrar novamente.
+Scroll reveal progressivo em títulos, subtítulos, parágrafos, fotografias, cards, etapas e CTAs. Deslocamento de 28 px no texto e 32 px nas fotografias, combinado com opacidade; duração de 650 ms no conteúdo e 750 ms nas fotos, com curva `cubic-bezier(.22,.61,.36,1)`. Parágrafos têm atraso de 100 ms, CTAs de 180 ms, e cards/etapas usam intervalos de 100 ms, limitados a 200 ms.
 
-Cada bloco é desobservado após a primeira entrada; uma marcação persistente impede repetições ao inverter a rolagem ou mudar preferências. Não há listener de scroll nem medições durante a rolagem. A primeira dobra permanece diretamente visível. Movimento reduzido desativa os efeitos e revela imediatamente qualquer bloco pendente. O foco por teclado também revela seu bloco sem esperar animação. Sem JavaScript ou IntersectionObserver, todo o conteúdo permanece visível.
+Um IntersectionObserver inicia a entrada na viewport. Outro rearma o elemento somente depois de ele sair completamente de uma margem de 160 px ao redor da tela. Assim, as entradas se repetem ao voltar às seções, sem ocultar conteúdo ainda visível e sem reiniciar por pequenas oscilações junto à borda. A preparação fora da tela não recebe transição de saída.
+
+Os alvos não incluem simultaneamente pais e filhos, evitando deslocamentos e atrasos acumulados. Não há listeners de scroll nem medições contínuas; apenas uma leitura inicial por alvo. A primeira dobra já visível e a imagem LCP não são ocultadas na carga inicial. Foco por teclado e retorno à aba finalizam entradas em andamento para priorizar leitura e interação. Movimento reduzido remove os efeitos, inclusive ao alterar a preferência em tempo de execução. Sem JavaScript ou IntersectionObserver, o conteúdo continua visível.
 
 ## Hero e rodapé
 
