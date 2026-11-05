@@ -27,3 +27,7 @@ Menu mobile com estado expandido, Escape e gestão de foco. FAQ em `details/summ
 Fotografias reais e marca original fornecidas em `Arquivo 2.zip`, incorporadas em 5 de novembro de 2026. Retrato próximo na hero e retrato no sofá em Sobre, com versões responsivas AVIF/WebP. Logo escuro original no cabeçalho e rodapé, sem recoloração, recorte ou distorção; a versão branca é preservada para uso futuro. Favicon derivado da submarca original apenas por redimensionamento com margem transparente.
 
 A hero usa enquadramento em `50% 28%` e o retrato de Sobre em `58% 28%`. A exibição foi revisada em desktop e mobile. Nenhum rosto ou marca foi recriado por IA. O arquivo social dedicado e a aprovação final de uso/recortes ainda precisam ser confirmados.
+
+## Movimento
+
+Entradas pontuais de títulos, textos, imagens e cartões ao rolar, com fade e deslocamento vertical de 14 px durante 550 ms. Progressão de até 130 ms entre elementos próximos, uma vez por elemento. A hero mantém o carregamento direto para preservar a primeira dobra. Botões usam transições de cor, borda e sombra. Movimento reduzido desativa animações e transições; o conteúdo não depende de animações para aparecer.

@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ScrollReveal from '../components/ScrollReveal.astro';
 import ContactLink from '../components/ContactLink.astro';
 import Portrait from '../components/Portrait.astro';
 import { site, services, process, faqs, maps, whatsapp } from '../data/site';
@@ -47,21 +48,7 @@ const schema = {
         <div class="hero-actions">
           <ContactLink />
           <a class="arrow-link" href="#servicos">
-            Conhecer os atendimentos{' '}
-            <span aria-hidden="true">
-              <svg
-                class="icon"
-                viewBox="0 0 24 24"
-                width="20"
-                height="20"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.4"
-                aria-hidden="true"
-              >
-                <path d="M12 4v16m-6-6 6 6 6-6" />
-              </svg>
-            </span>
+            Conhecer os atendimentos
           </a>
         </div>
         <div class="hero-location">
@@ -75,27 +62,6 @@ const schema = {
       </div>
       <div class="hero-visual">
         <Portrait />
-        <div class="image-note">
-          <span>
-            Respeito ao seu tempo.
-            <br />
-            <em>Atenção à sua singularidade.</em>
-          </span>
-          <span class="note-mark" aria-hidden="true">
-            <svg
-              class="icon"
-              viewBox="0 0 24 24"
-              width="20"
-              height="20"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.4"
-              aria-hidden="true"
-            >
-              <path d="M5 19 19 5M5 5h14v14" />
-            </svg>
-          </span>
-        </div>
         <span class="visual-label">
           ESCUTA &nbsp; / &nbsp; CIÊNCIA &nbsp; / &nbsp; CUIDADO
         </span>
@@ -149,20 +115,6 @@ const schema = {
           <article class="service-card">
             <div class="card-top">
               <span>{service.number}</span>
-              <span aria-hidden="true">
-                <svg
-                  class="icon"
-                  viewBox="0 0 24 24"
-                  width="20"
-                  height="20"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.4"
-                  aria-hidden="true"
-                >
-                  <path d="M5 19 19 5M5 5h14v14" />
-                </svg>
-              </span>
             </div>
             <p class="eyebrow">{service.eyebrow}</p>
             <h3>{service.title}</h3>
@@ -491,6 +443,7 @@ const schema = {
       <path d="M9 8c0 3 2 5 5 6l1-1-2-1-.7.7c-1.2-.6-2.1-1.5-2.7-2.7L10.3 9 9 8Z" />
     </svg>
   </a>
+  <ScrollReveal />
   <script>
     const footer = document.querySelector('footer');
     const floating = document.querySelector('.floating-contact');

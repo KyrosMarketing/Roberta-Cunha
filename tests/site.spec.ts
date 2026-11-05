@@ -3,6 +3,8 @@ import AxeBuilder from '@axe-core/playwright';
 
 for (const width of [320, 375, 390, 430, 768, 1024, 1440, 1920]) {
   test(`layout e acessibilidade em ${width}px`, async ({ page }) => {
+    // Auditoria estática; animações em movimento são verificadas nos testes próprios.
+    await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.setViewportSize({ width, height: 900 });
     const errors: string[] = [];
     page.on('pageerror', (error) => errors.push(error.message));
@@ -109,6 +111,7 @@ test('menu mobile, teclado, FAQ e contatos', async ({ page }) => {
 test('preferências, persistência, rejeição e ausência de rastreadores', async ({
   page,
 }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
   const requests: string[] = [];
   page.on('request', (request) => {
     if (!request.url().startsWith('http://127.0.0.1:4322'))
@@ -200,3 +203,43 @@ test('conteúdo e FAQ funcionam sem JavaScript', async ({ browser }) => {
   await expect(page.locator('main a[href*="wa.me"]').first()).toBeVisible();
   await context.close();
 });
+
+for (const width of [390, 1440]) {
+  test(`entradas suaves e movimento reduzido em ${width}px`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('/');
+    await expect(
+      page.locator('.image-note, .card-top svg, .hero-actions .arrow-link svg'),
+    ).toHaveCount(0);
+    await page.evaluate(() => {
+      const target = document.querySelector('.services-grid')!;
+      window.scrollTo({
+        top: target.getBoundingClientRect().top + scrollY - 220,
+        behavior: 'instant',
+      });
+    });
+    await expect
+      .poll(() =>
+        page.evaluate(
+          () =>
+            document
+              .getAnimations()
+              .filter(
+                (animation) => animation.effect?.getTiming().duration === 550,
+              ).length,
+        ),
+      )
+      .toBeGreaterThan(0);
+    await expect
+      .poll(() => page.evaluate(() => document.getAnimations().length))
+      .toBe(0);
+    await expect(page.locator('.service-card').first()).toBeVisible();
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.reload();
+    await page.locator('.services-grid').scrollIntoViewIfNeeded();
+    expect(await page.evaluate(() => document.getAnimations().length)).toBe(0);
+    await expect(page.locator('.service-card').last()).toBeVisible();
+  });
+}

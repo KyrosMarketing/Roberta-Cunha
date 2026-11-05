@@ -337,23 +337,7 @@ section.hero {
 .portrait.hero {
   height: 560px;
 }
-.image-note {
-  position: absolute;
-  bottom: 55px;
-  left: -24px;
-  right: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: var(--paper);
-  padding: 19px 25px;
-  box-shadow: var(--shadow);
-  font: 500 1.6rem/1.1 var(--serif);
-}
-.note-mark {
-  font: 1.5rem var(--sans);
-  color: var(--brown);
-}
+
 .visual-label {
   position: absolute;
   bottom: 0;
@@ -421,9 +405,7 @@ section.hero {
   color: var(--brown);
   font-size: 0.8rem;
 }
-.card-top span:last-child {
-  font-size: 1.4rem;
-}
+
 .service-card .eyebrow {
   font-size: 0.6rem;
   margin-bottom: 0.7rem;
@@ -828,10 +810,7 @@ body:has(footer:hover) .floating-contact {
   .hero h1 {
     font-size: 4rem;
   }
-  .image-note {
-    left: 0;
-    right: 24px;
-  }
+
   .section-heading,
   .detail-row,
   .faq-grid,
@@ -901,10 +880,7 @@ body:has(footer:hover) .floating-contact {
   .portrait.hero {
     height: 490px;
   }
-  .image-note {
-    font-size: 1.3rem;
-    padding: 18px;
-  }
+
   .hero-actions .button {
     font-size: 0.75rem;
   }
@@ -1008,12 +984,7 @@ body:has(footer:hover) .floating-contact {
   .portrait.hero {
     height: 390px;
   }
-  .image-note {
-    bottom: 45px;
-    left: 0;
-    right: 25px;
-    font-size: 1.5rem;
-  }
+
   .visual-label {
     font-size: 0.5rem;
   }
@@ -1240,9 +1211,7 @@ body:has(.cookie-panel:not([hidden])) .floating-contact {
   .hero h1 {
     font-size: 2.9rem;
   }
-  .image-note {
-    font-size: 1.3rem;
-  }
+
   .contact-pair {
     grid-template-columns: 1fr;
   }
@@ -1257,8 +1226,6 @@ body:has(.cookie-panel:not([hidden])) .floating-contact {
 .button > span:last-child {
   display: flex;
 }
-.card-top > span:last-child,
-.note-mark,
 .strip-symbol {
   display: flex;
   align-items: center;
@@ -1292,4 +1259,28 @@ body:has(.cookie-panel:not([hidden])) .floating-contact {
 
 picture {
   display: block;
+}
+
+/* Simplificação da hero, sem divisores ou seta no link secundário. */
+.hero-actions .arrow-link {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+.hero-location {
+  border-top: 0;
+  padding-top: 0;
+  margin-top: 1.5rem;
+}
+.button {
+  transition:
+    background var(--ease),
+    color var(--ease),
+    border-color var(--ease),
+    box-shadow var(--ease);
+}
+.button:hover {
+  box-shadow: var(--shadow);
+}
+summary > span {
+  transition: transform var(--ease);
 }

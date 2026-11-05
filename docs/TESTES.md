@@ -67,3 +67,13 @@ As instruções de instalação e inicialização foram persistidas nos campos `
 ## Preparação do primeiro envio ao GitHub
 
 Antes do primeiro commit em `main`, foram repetidos build, checagem de tipos, formatação e os 12 testes, todos aprovados. Foi confirmado `noindex,follow` no HTML gerado e `X-Robots-Tag: noindex` nos cabeçalhos do Pages. A versão é pública para revisão, não privada. O Lighthouse acima foi executado antes desse bloqueio intencional: a pontuação de SEO não representa a configuração de indexação da revisão. Nenhum novo resultado Lighthouse é alegado após essa alteração.
+
+## Ajustes editoriais e microanimações
+
+Removidos o bloco de frase sobre a fotografia, a seta e os dois divisores na área do link secundário da hero e as setas superiores dos cartões. Paleta, famílias tipográficas e estrutura preservadas; capturas de hero e serviços atualizadas em 390 e 1440 px.
+
+Texto da avaliação revisado a pedido da cliente, incluindo investigação diagnóstica, acompanhamento, públicos e demandas de TDAH, TEA e ansiedade. A validação pela Roberta permanece na checklist de publicação.
+
+`ScrollReveal.astro` usa IntersectionObserver e Web Animations API, sem bibliotecas: entrada de 550 ms, deslocamento de 14 px e atraso progressivo de até 130 ms. A primeira dobra não é ocultada. Sem JavaScript ou APIs de animação, o conteúdo permanece visível. Alterar a preferência para movimento reduzido cancela os efeitos ativos; foco por teclado finaliza a animação do elemento para mantê-lo legível.
+
+Validação desta revisão: build e tipos aprovados, **14 testes aprovados em 20,3 s**. Os 12 fluxos existentes continuam passando e dois novos testes verificam animações reais e movimento reduzido em 390 e 1440 px. Auditorias Axe e capturas estáticas são executadas com movimento reduzido, evitando amostrar estados transitórios de opacidade; o comportamento em movimento é testado separadamente. Nenhuma violação Axe detectada nos estados estáveis verificados. Não foi executado novo Lighthouse nesta revisão; os relatórios anteriores são históricos.

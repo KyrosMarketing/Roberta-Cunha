@@ -13,7 +13,7 @@
 - [ ] Confirmar públicos, modalidades por serviço e condições de atendimento online.
 - [ ] Validar duração aproximada de 60 minutos, frequência e proposta inicialmente semanal.
 - [ ] Aprovar etapas da avaliação, devolutiva e documentação pertinente sem prometer prazos.
-- [ ] Confirmar se atende investigação de TDAH/TEA antes de mencionar essas demandas (omitidas nesta versão).
+- [ ] Validar com Roberta o texto solicitado sobre investigação diagnóstica, acompanhamento, TDAH/TEA e ansiedade, agora incluído nesta versão.
 - [ ] Revisar todos os textos, FAQ e notas editoriais; resolver as pendências antes de remover as notas.
 - [ ] Conferir telefone, e-mail, Instagram, endereço, sala, bloco e destino do Maps. Link de busca é baseado no endereço fornecido; não houve verificação independente da localização.
 

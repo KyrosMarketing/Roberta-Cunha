@@ -1,0 +1,64 @@
+<script>
+  const preference = matchMedia('(prefers-reduced-motion: reduce)');
+  const active = new Map<Element, Animation>();
+  let observer: IntersectionObserver | undefined;
+  const setup = () => {
+    observer?.disconnect();
+    active.forEach((animation) => animation.cancel());
+    active.clear();
+    if (
+      preference.matches ||
+      !('IntersectionObserver' in window) ||
+      !Element.prototype.animate
+    )
+      return;
+    const groups = document.querySelectorAll(
+      'main > section:not(.hero), .care-section, .process-section',
+    );
+    const delays = new Map<Element, number>();
+    observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          observer?.unobserve(entry.target);
+          const animation = entry.target.animate(
+            [
+              { opacity: 0, transform: 'translateY(14px)' },
+              { opacity: 1, transform: 'translateY(0)' },
+            ],
+            {
+              duration: 550,
+              delay: delays.get(entry.target) ?? 0,
+              easing: 'cubic-bezier(.2,.65,.3,1)',
+              fill: 'backwards',
+            },
+          );
+          active.set(entry.target, animation);
+          animation.finished
+            .then(() => active.delete(entry.target))
+            .catch(() => {});
+        });
+      },
+      { threshold: 0.08, rootMargin: '0px 0px -24px 0px' },
+    );
+    groups.forEach((group) => {
+      const targets = group.querySelectorAll(
+        '.section-heading > *, .service-card, .detail-row > *, .about-visual, .about-copy > *, .steps > li, .faq-intro > *, .faq-list, .contact-grid > *, .closing > *',
+      );
+      targets.forEach((target, index) => {
+        // O conteúdo já na primeira dobra permanece visível, inclusive a imagem LCP.
+        if (target.getBoundingClientRect().top < innerHeight) return;
+        delays.set(target, Math.min((index % 3) * 65, 130));
+        observer?.observe(target);
+      });
+    });
+  };
+  // A animação nunca é necessária para revelar conteúdo: sem JS/observer tudo permanece legível.
+  document.addEventListener('focusin', (event) => {
+    active.forEach((animation, element) => {
+      if (element.contains(event.target as Node)) animation.finish();
+    });
+  });
+  preference.addEventListener('change', setup);
+  setup();
+</script>

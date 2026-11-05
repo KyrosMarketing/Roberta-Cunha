@@ -108,14 +108,14 @@ export const services = [
     title: 'Avaliação Neuropsicológica',
     eyebrow: 'Compreender para orientar o cuidado',
     description:
-      'Uma investigação cuidadosa do funcionamento cognitivo, emocional e comportamental, que contribui para compreender habilidades, dificuldades e necessidades individuais.',
+      'Investigação diagnóstica do funcionamento cognitivo, emocional e comportamental de crianças, adolescentes e adultos, com rigor técnico e acolhimento.',
     tags: ['Atenção e memória', 'Aprendizagem', 'Funções executivas'],
     kind: 'assessment' as ContactKind,
     cta: 'Agendar avaliação neuropsicológica',
     detail:
-      'O processo reúne entrevista, instrumentos pertinentes e análise integrada das informações. Pode investigar atenção, memória, linguagem, funções executivas, aprendizagem e aspectos emocionais e comportamentais.',
+      'A atuação da Roberta une rigor técnico e acolhimento na investigação diagnóstica e no acompanhamento de crianças, adolescentes e adultos, considerando demandas relacionadas ao TDAH, ao Transtorno do Espectro Autista (TEA), à ansiedade e a outras questões emocionais, cognitivas e comportamentais.',
     extra:
-      'A indicação e o percurso são definidos individualmente. A avaliação contribui para a compreensão da demanda e para orientar o cuidado, sem promessas de conclusões ou resultados específicos.',
+      'O processo integra entrevista, instrumentos pertinentes e análise das informações para compreender a demanda e orientar o cuidado. A indicação e o percurso são individualizados, sem garantia de diagnóstico ou de resultados específicos.',
   },
 ];
 export const process = [
