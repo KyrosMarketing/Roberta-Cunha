@@ -164,7 +164,7 @@ test('metadados, âncoras e páginas complementares', async ({
     JSON.parse(
       await page.locator('script[type="application/ld+json"]').innerText(),
     ).name,
-  ).toBe('Roberta da Silva Cunha');
+  ).toBe('Roberta da Cunha Harder');
   const anchors = await page
     .locator('a[href^="#"],a[href^="/#"]')
     .evaluateAll((items) =>

@@ -2,7 +2,7 @@ export const site = {
   // Primeira versão pública para revisão; liberar indexação somente após aprovação.
   reviewMode: true,
   name: 'Roberta Cunha',
-  fullName: 'Roberta da Silva Cunha',
+  fullName: 'Roberta da Cunha Harder',
   crp: '08/38333',
   url: 'https://robertacunha.com.br',
   email: 'contato@robertacunha.com.br',
@@ -22,18 +22,6 @@ export const site = {
       height: 810,
     },
     hero: {
-      src: '/images/roberta-retrato-853.webp',
-      alt: 'Roberta Cunha sorrindo, sentada em uma poltrona no consultório',
-      width: 853,
-      height: 1280,
-      srcSet:
-        '/images/roberta-retrato-400.webp 400w, /images/roberta-retrato-640.webp 640w, /images/roberta-retrato-853.webp 853w',
-      avifSrcSet:
-        '/images/roberta-retrato-400.avif 400w, /images/roberta-retrato-640.avif 640w, /images/roberta-retrato-853.avif 853w',
-      sizes:
-        '(max-width: 700px) calc(100vw - 55px), (max-width: 1350px) 44vw, 530px',
-    },
-    about: {
       src: '/images/roberta-consultorio-853.webp',
       alt: 'Roberta Cunha sentada no sofá do consultório',
       width: 853,
@@ -42,6 +30,18 @@ export const site = {
         '/images/roberta-consultorio-400.webp 400w, /images/roberta-consultorio-640.webp 640w, /images/roberta-consultorio-853.webp 853w',
       avifSrcSet:
         '/images/roberta-consultorio-400.avif 400w, /images/roberta-consultorio-640.avif 640w, /images/roberta-consultorio-853.avif 853w',
+      sizes:
+        '(max-width: 700px) calc(100vw - 55px), (max-width: 1350px) 44vw, 530px',
+    },
+    about: {
+      src: '/images/roberta-retrato-853.webp',
+      alt: 'Roberta Cunha sorrindo, sentada em uma poltrona no consultório',
+      width: 853,
+      height: 1280,
+      srcSet:
+        '/images/roberta-retrato-400.webp 400w, /images/roberta-retrato-640.webp 640w, /images/roberta-retrato-853.webp 853w',
+      avifSrcSet:
+        '/images/roberta-retrato-400.avif 400w, /images/roberta-retrato-640.avif 640w, /images/roberta-retrato-853.avif 853w',
       sizes:
         '(max-width: 700px) calc(100vw - 55px), (max-width: 1350px) 44vw, 530px',
     },
@@ -139,19 +139,19 @@ export const faqs = [
   ],
   [
     'Quanto tempo dura uma sessão?',
-    'A duração informada para a sessão de psicoterapia é de aproximadamente 60 minutos. Confirme os detalhes no agendamento.',
+    'A duração de uma sessão de psicoterapia é de aproximadamente 60 minutos.',
   ],
   [
     'Qual é a frequência dos atendimentos?',
-    'A frequência é alinhada com a profissional, conforme a demanda e a indicação clínica. A proposta de acompanhamento inicialmente semanal ainda será validada pela Roberta.',
+    'A frequência dos encontros é combinada com a Roberta, considerando suas necessidades e a indicação clínica. Esse ritmo pode ser ajustado ao longo do acompanhamento.',
   ],
   [
     'A psicoterapia pode ser realizada online?',
-    'O briefing prevê atendimentos presenciais e online. A disponibilidade de cada modalidade por serviço e faixa etária precisa ser confirmada com a profissional.',
+    'Sim! Os atendimentos de psicoterapia são realizados tanto presencialmente, em Curitiba, quanto online.',
   ],
   [
     'A Roberta atende crianças e adolescentes?',
-    'O público informado inclui crianças, adolescentes e adultos. A adequação do serviço e da modalidade para cada demanda será confirmada no contato inicial.',
+    'Sim! A Roberta realiza atendimentos para crianças, adolescentes e adultos, considerando as particularidades e necessidades de cada fase da vida.',
   ],
   [
     'O que é uma avaliação neuropsicológica?',
@@ -163,7 +163,7 @@ export const faqs = [
   ],
   [
     'Como funciona o processo de avaliação?',
-    'A proposta editorial inclui entrevista inicial, investigação com instrumentos pertinentes, análise integrada e devolutiva com orientações. Procedimentos e documentação serão definidos pela profissional; não há prazo ou número de encontros pré-fixado neste site.',
+    'O processo envolve entrevista inicial, investigação com instrumentos pertinentes, análise integrada das informações e devolutiva com orientações. As etapas, a duração e a documentação são definidas pela Roberta de acordo com as necessidades de cada avaliação.',
   ],
   [
     'Qual é a diferença entre psicoterapia e avaliação neuropsicológica?',

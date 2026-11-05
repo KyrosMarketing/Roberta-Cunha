@@ -40,8 +40,8 @@ Os dados de contato permanecem centralizados. Textos estruturais da landing pode
 
 As fotografias e a marca original foram recebidas em `Arquivo 2.zip`. Os cinco arquivos originais estão preservados em `src/assets/originals/`. Não foram alterados rostos, cores ou proporções da marca.
 
-- Hero: retrato próximo (`05163b2b-601a-4a90-a08e-060376786732.JPG`).
-- Sobre: retrato no sofá (`d9ea6497-f289-4c11-bed5-2d9072fa23c3.JPG`).
+- Hero: retrato no sofá (`d9ea6497-f289-4c11-bed5-2d9072fa23c3.JPG`).
+- Sobre: retrato próximo (`05163b2b-601a-4a90-a08e-060376786732.JPG`).
 - Retratos em `public/images/`: AVIF (qualidade 65) e WebP (qualidade 86), com larguras 400, 640 e 853 px, sem ampliação. Dimensões originais: 853 × 1280 px.
 - Marca em `public/brand/`: PNGs originais escuro, branco e submarca, copiados sem alteração. A versão escura é usada no cabeçalho e rodapé; a branca fica disponível para usos futuros.
 - Favicon: derivado de 64 × 64 px da submarca original, sem recorte ou redesenho, com transparência preservada.

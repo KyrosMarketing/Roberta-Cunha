@@ -24,9 +24,9 @@ Menu mobile com estado expandido, Escape e gestão de foco. FAQ em `details/summ
 
 ## Ativos originais
 
-Fotografias reais e marca original fornecidas em `Arquivo 2.zip`, incorporadas em 5 de novembro de 2026. Retrato próximo na hero e retrato no sofá em Sobre, com versões responsivas AVIF/WebP. Logo escuro original no cabeçalho e rodapé, sem recoloração, recorte ou distorção; a versão branca é preservada para uso futuro. Favicon derivado da submarca original apenas por redimensionamento com margem transparente.
+Fotografias reais e marca original fornecidas em `Arquivo 2.zip`, incorporadas em 5 de novembro de 2026. Retrato no sofá na hero e retrato próximo em Sobre, com versões responsivas AVIF/WebP. Logo escuro original no cabeçalho e rodapé, sem recoloração, recorte ou distorção; a versão branca é preservada para uso futuro. Favicon derivado da submarca original apenas por redimensionamento com margem transparente.
 
-A hero usa enquadramento em `50% 28%` e o retrato de Sobre em `58% 28%`. A exibição foi revisada em desktop e mobile. Nenhum rosto ou marca foi recriado por IA. O arquivo social dedicado e a aprovação final de uso/recortes ainda precisam ser confirmados.
+A hero usa enquadramento em `58% 28%` e o retrato de Sobre em `50% 28%`. A exibição foi revisada em desktop e mobile. Nenhum rosto ou marca foi recriado por IA. O arquivo social dedicado e a aprovação final de uso/recortes ainda precisam ser confirmados.
 
 ## Movimento
 

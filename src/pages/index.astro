@@ -46,10 +46,29 @@ const schema = {
           particularidades de cada pessoa.
         </p>
         <div class="hero-actions">
-          <ContactLink />
-          <a class="arrow-link" href="#servicos">
-            Conhecer os atendimentos
-          </a>
+          <ContactLink label="Conversar com a Roberta" />
+          <div class="hero-explore">
+            <a class="arrow-link" href="#servicos">
+              Conhecer os atendimentos
+            </a>
+            <a
+              class="hero-scroll"
+              href="#servicos"
+              aria-label="Ir para a seção de atendimentos"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.4"
+                aria-hidden="true"
+              >
+                <path d="M12 4v16m-6-6 6 6 6-6" />
+              </svg>
+            </a>
+          </div>
         </div>
         <div class="hero-location">
           <span class="location-dot" aria-hidden="true"></span>
@@ -203,8 +222,8 @@ const schema = {
           sensibilidade.
         </p>
         <p>
-          Sou Roberta da Silva Cunha, psicóloga, CRP {site.crp}. Meu trabalho
-          reúne Psicoterapia e Avaliação Neuropsicológica, com atenção às
+          Sou {site.fullName}. Psicóloga, CRP {site.crp}. Meu trabalho reúne
+          Psicoterapia e Avaliação Neuropsicológica, com atenção às
           particularidades de cada pessoa e compromisso com um cuidado
           responsável.
         </p>

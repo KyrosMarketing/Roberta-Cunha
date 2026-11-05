@@ -1245,10 +1245,10 @@ body:has(.cookie-panel:not([hidden])) .floating-contact {
   object-fit: contain;
 }
 .portrait.hero {
-  object-position: 50% 28%;
+  object-position: 58% 28%;
 }
 .portrait.about {
-  object-position: 58% 28%;
+  object-position: 50% 28%;
 }
 @media (max-width: 959px) {
   .wordmark img {
@@ -1283,4 +1283,23 @@ picture {
 }
 summary > span {
   transition: transform var(--ease);
+}
+
+.hero-explore {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.hero-scroll {
+  display: grid;
+  place-items: center;
+  align-self: center;
+  min-width: 44px;
+  min-height: 44px;
+  color: var(--brown);
+  text-decoration: none;
+  transition: color var(--ease);
+}
+.hero-scroll:hover {
+  color: var(--ink);
 }

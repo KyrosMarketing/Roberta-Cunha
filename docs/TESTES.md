@@ -77,3 +77,11 @@ Texto da avaliação revisado a pedido da cliente, incluindo investigação diag
 `ScrollReveal.astro` usa IntersectionObserver e Web Animations API, sem bibliotecas: entrada de 550 ms, deslocamento de 14 px e atraso progressivo de até 130 ms. A primeira dobra não é ocultada. Sem JavaScript ou APIs de animação, o conteúdo permanece visível. Alterar a preferência para movimento reduzido cancela os efeitos ativos; foco por teclado finaliza a animação do elemento para mantê-lo legível.
 
 Validação desta revisão: build e tipos aprovados, **14 testes aprovados em 20,3 s**. Os 12 fluxos existentes continuam passando e dois novos testes verificam animações reais e movimento reduzido em 390 e 1440 px. Auditorias Axe e capturas estáticas são executadas com movimento reduzido, evitando amostrar estados transitórios de opacidade; o comportamento em movimento é testado separadamente. Nenhuma violação Axe detectada nos estados estáveis verificados. Não foi executado novo Lighthouse nesta revisão; os relatórios anteriores são históricos.
+
+## Troca de retratos, identificação e FAQ
+
+Retratos invertidos entre hero e Sobre com os mesmos arquivos responsivos e pontos focais acompanhando cada foto. CTA da hero alterado para “Conversar com a Roberta”, mantendo o destino e a mensagem do WhatsApp. Seta independente com área de toque de 44 px abaixo de “Conhecer os atendimentos”, vinculada a `#servicos`; a rolagem respeita movimento reduzido.
+
+Nome corrigido para Roberta da Cunha Harder no cadastro central e na apresentação. Mantida a frase sobre respeito, atenção e sensibilidade. FAQ revisado para comunicação direta, sem referências ao briefing ou validação editorial; duração, modalidades de psicoterapia e público seguem os textos solicitados, sem acrescentar serviços.
+
+Build, tipos e 14 testes aprovados (19,7 s), incluindo oito larguras, Axe em estados estáveis, movimento reduzido e funcionamento sem JavaScript. Capturas de hero e Sobre atualizadas em desktop/mobile. Não foi executado novo Lighthouse nesta revisão.
