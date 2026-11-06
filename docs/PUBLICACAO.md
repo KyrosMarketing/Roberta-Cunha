@@ -7,7 +7,8 @@
 - [x] Dois retratos reais recebidos em 853 × 1280 px e incorporados.
 - [ ] Aprovar enquadramentos e textos alternativos.
 - [x] Versões responsivas AVIF e WebP dos dois retratos.
-- [x] Imagem Open Graph de 1200 × 630 px com a logo original e metadados solicitados.
+- [x] Miniatura Open Graph de 400 × 400 px com a logo original, dimensões declaradas e `twitter:card=summary`.
+- [ ] Conferir uma nova prévia no WhatsApp após o deploy; o layout é decidido pela plataforma e pode usar cache.
 - [ ] Confirmar resposta pública da imagem no domínio após deploy e revisar um novo compartilhamento.
 - [x] Logo original da Kyros recebida, preservada e aplicada à assinatura clicável no rodapé.
 - [ ] Conferir nome, CRP 08/38333, formação e nome oficial da instituição/especialização.

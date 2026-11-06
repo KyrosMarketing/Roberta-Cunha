@@ -68,10 +68,10 @@ export const site = {
     },
     favicon: { src: '/brand/favicon.png', alt: '', width: 64, height: 64 },
     social: {
-      src: '/social/roberta-cunha-og-v1.png',
-      alt: 'Roberta Cunha — Psicologia e Neuropsicologia em Curitiba',
-      width: 1200,
-      height: 630,
+      src: '/social/roberta-cunha-whatsapp-v3.png',
+      alt: 'Logo Roberta Cunha — Psicóloga',
+      width: 400,
+      height: 400,
     },
   } as Record<
     'logo' | 'hero' | 'about' | 'favicon' | 'social',

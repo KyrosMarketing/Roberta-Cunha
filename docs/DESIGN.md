@@ -26,7 +26,7 @@ Menu mobile com estado expandido, Escape e gestão de foco. FAQ em `details/summ
 
 Fotografias reais e marca original fornecidas em `Arquivo 2.zip`, incorporadas em 5 de novembro de 2026. Retrato no sofá na hero e retrato próximo em Sobre, com versões responsivas AVIF/WebP. Logo escuro original no cabeçalho e rodapé, sem recoloração, recorte ou distorção; a versão branca é preservada para uso futuro. Favicon derivado da submarca original apenas por redimensionamento com margem transparente.
 
-A hero usa enquadramento em `58% 28%` e o retrato de Sobre em `50% 28%`. A exibição foi revisada em desktop e mobile. Nenhum rosto ou marca foi recriado por IA. A aprovação final de uso/recortes ainda precisa ser confirmada. A imagem social dedicada de 1200 × 630 px foi composta com a marca original, fundo off-white, moldura rosé e linha terracota.
+A hero usa enquadramento em `58% 28%` e o retrato de Sobre em `50% 28%`. A exibição foi revisada em desktop e mobile. Nenhum rosto ou marca foi recriado por IA. A aprovação final de uso/recortes ainda precisa ser confirmada. A imagem social atual usa a logo original em uma miniatura quadrada de 400 × 400 px, sem fotografia, centralizada sobre fundo off-white e com suas proporções preservadas. A arte anterior de 1200 × 630 px permanece arquivada e acessível, mas não está mais apontada pelos metadados.
 
 ## Movimento
 

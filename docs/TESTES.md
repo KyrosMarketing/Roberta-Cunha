@@ -119,3 +119,13 @@ A entrada começa na viewport. O elemento só é rearmado após sair de uma marg
 Resultado: **15 testes aprovados em 30,2 s**, build, checagem de tipos e formatação aprovados. Os testes em 390 e 1440 px verificam duas entradas reais do mesmo cartão, títulos, parágrafos, fotografia e CTA; registram alterações de estado para confirmar que nenhum reset ocorre dentro da viewport. Também verificam altura constante do cartão, rolagem gradual e rápida em ambas as direções e desativação dos efeitos ao mudar a preferência de movimento.
 
 Inspeção dos estados intermediário e final da fotografia em mobile e desktop: opacidade intermediária aproximada de 0,45 e deslocamento de 17,4 px, concluindo em opacidade 1 e transform sem deslocamento, com a mesma altura do elemento. As capturas estáticas geradas pelos testes não tiveram diferenças nesta revisão. Não foi executado novo Lighthouse; não há promessa de taxa de quadros em aparelhos físicos não testados.
+
+## Miniatura compacta para compartilhamento no WhatsApp
+
+A imagem social agora usa a logo original completa, centralizada em fundo off-white de 400 × 400 px, no arquivo versionado `public/social/roberta-cunha-whatsapp-v3.png`. A marca foi apenas redimensionada proporcionalmente; o original permanece intacto. A arte anterior de 1200 × 630 px continua disponível, mas não é mais indicada pelos metadados.
+
+Open Graph declara largura/altura 400, PNG e URL absoluta. Twitter Card usa `summary` para a imagem quadrada. Título, descrição e canonical foram preservados. Nenhum arquivo de estrutura, estilo ou conteúdo visível da landing foi alterado.
+
+Build e checagem de tipos aprovados. O teste direcionado de metadados sociais passou (1 teste em 1,6 s), conferindo tags únicas, valores preservados, dimensões e resposta HTTP 200 com `image/png` no preview local. A miniatura foi inspecionada visualmente. A consulta externa à URL final retornou 403 do proxy do ambiente; portanto, a disponibilidade pública e o formato real no WhatsApp não foram confirmados nesta sessão.
+
+A imagem quadrada busca favorecer o cartão compacto, mas quem determina o layout é o WhatsApp. O nome de arquivo novo reduz a reutilização de cache da imagem; não força atualização dos metadados da página nem de mensagens já enviadas. Testar um novo compartilhamento após o deploy, considerando o cache da plataforma.

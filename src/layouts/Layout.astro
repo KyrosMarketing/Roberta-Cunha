@@ -45,7 +45,11 @@ const socialImage = social
     <meta property="og:site_name" content={site.name} />
     <meta
       name="twitter:card"
-      content={social ? 'summary_large_image' : 'summary'}
+      content={
+        social && social.width > social.height
+          ? 'summary_large_image'
+          : 'summary'
+      }
     />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
