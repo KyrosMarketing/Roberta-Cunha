@@ -68,10 +68,10 @@ export const site = {
     },
     favicon: { src: '/brand/favicon.png', alt: '', width: 64, height: 64 },
     social: {
-      src: '/social/roberta-cunha-whatsapp-compact-v4.png',
+      src: 'https://raw.githubusercontent.com/KyrosMarketing/Roberta-Cunha/main/public/social/roberta-cunha-whatsapp-compact-v5.png',
       alt: 'Logo Roberta Cunha — Psicóloga',
-      width: 160,
-      height: 160,
+      width: 200,
+      height: 200,
     },
   } as Record<
     'logo' | 'hero' | 'about' | 'favicon' | 'social',

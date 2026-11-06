@@ -137,3 +137,13 @@ A captura enviada pela cliente mostrou que a miniatura quadrada de 400 × 400 ai
 Build e tipos aprovados. O teste direcionado de metadados passou (1 teste, 1,5 s), verificando tags únicas, dimensões reais do PNG, resposta HTTP 200 no preview local e valores preservados. O arquivo foi inspecionado visualmente. As imagens anteriores permanecem disponíveis para não quebrar referências já compartilhadas.
 
 A consulta ao site de referência `carolharder.com.br` foi bloqueada pelo proxy com 403; não foram copiadas imagens nem presumidos seus metadados. A redução para 160 px é uma tentativa de favorecer uma miniatura pequena, não uma configuração que force o layout do WhatsApp. Confirmar após o deploy com uma nova mensagem. A URL de teste `https://robertacunha.com.br/?preview=compacto4` pode ajudar a diferenciar a consulta em relação ao endereço previamente compartilhado, sem mudar a canonical; o cache e a renderização continuam sob controle da plataforma. Mensagens antigas podem manter o cartão anterior.
+
+## Comparação com o código-fonte da Carol
+
+A captura do código-fonte fornecida pela cliente confirma a configuração da referência: PNG de 200 × 200 px, `og:image` e `og:image:secure_url` apontando para GitHub Raw. A configuração da Roberta foi alinhada a esses dois aspectos observáveis, mantendo somente sua logo original, seus próprios textos e sua canonical.
+
+A nova imagem é `public/social/roberta-cunha-whatsapp-compact-v5.png` e a URL declarada é `https://raw.githubusercontent.com/KyrosMarketing/Roberta-Cunha/main/public/social/roberta-cunha-whatsapp-compact-v5.png`. O arquivo também permanece disponível no build estático local. Não foi copiado qualquer ativo da Carol.
+
+Build e tipos aprovados. O teste direcionado passou (1 teste, 1,6 s), validando as tags únicas, as duas URLs de imagem, dimensões 200 × 200, PNG e os valores de título, descrição e canonical preservados. O acesso ao GitHub Raw para um arquivo já publicado da Roberta foi confirmado antes da alteração; o arquivo novo deve ser conferido publicamente após o push. Nenhum layout, texto visível ou recurso funcional da landing foi alterado.
+
+A configuração equivalente não garante uma renderização equivalente no WhatsApp: cache, histórico da URL e decisões do cliente ainda podem afetar o cartão. A consulta direta ao domínio continua bloqueada pelo proxy do ambiente. Conferir uma mensagem nova após o deploy; o parâmetro de teste `?preview=compacto5` não modifica a canonical e não garante renovação de cache.

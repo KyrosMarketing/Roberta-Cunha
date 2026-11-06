@@ -7,16 +7,16 @@ await mkdir(new URL('public/social/', root), { recursive: true });
 const logo = await sharp(
   new URL('public/brand/roberta-cunha-escuro.png', root).pathname,
 )
-  .resize({ width: 144, withoutEnlargement: true })
+  .resize({ width: 180, withoutEnlargement: true })
   .png()
   .toBuffer();
 await sharp({
-  create: { width: 160, height: 160, channels: 3, background: '#FCF8F5' },
+  create: { width: 200, height: 200, channels: 3, background: '#FCF8F5' },
 })
   .composite([{ input: logo, gravity: 'centre' }])
   .png()
   .toFile(
-    new URL('public/social/roberta-cunha-whatsapp-compact-v4.png', root)
+    new URL('public/social/roberta-cunha-whatsapp-compact-v5.png', root)
       .pathname,
   );
-console.log('Miniatura social com logo original criada: 160 × 160 px.');
+console.log('Miniatura social com logo original criada: 200 × 200 px.');

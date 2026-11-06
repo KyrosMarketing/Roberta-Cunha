@@ -337,15 +337,16 @@ test('metadados sociais únicos, URLs absolutas e imagem pública estática', as
   const description =
     'Um espaço de escuta, acolhimento e cuidado. Psicoterapia e Avaliação Neuropsicológica para crianças, adolescentes e adultos. Atendimento presencial e online.';
   const image =
-    'https://robertacunha.com.br/social/roberta-cunha-whatsapp-compact-v4.png';
+    'https://raw.githubusercontent.com/KyrosMarketing/Roberta-Cunha/main/public/social/roberta-cunha-whatsapp-compact-v5.png';
   await expect(page).toHaveTitle(title);
   const expected = [
     ['property', 'og:title', title],
     ['property', 'og:description', description],
     ['property', 'og:url', 'https://robertacunha.com.br/'],
     ['property', 'og:image', image],
-    ['property', 'og:image:width', '160'],
-    ['property', 'og:image:height', '160'],
+    ['property', 'og:image:secure_url', image],
+    ['property', 'og:image:width', '200'],
+    ['property', 'og:image:height', '200'],
     ['property', 'og:image:type', 'image/png'],
     ['name', 'description', description],
     ['name', 'twitter:card', 'summary'],
@@ -373,11 +374,13 @@ test('metadados sociais únicos, URLs absolutas e imagem pública estática', as
     'src',
     '/brand/kyros-original.png',
   );
-  const response = await request.get(new URL(image).pathname);
+  const response = await request.get(
+    '/social/roberta-cunha-whatsapp-compact-v5.png',
+  );
   expect(response.status()).toBe(200);
   expect(response.headers()['content-type']).toContain('image/png');
   const metadata = await sharp(await response.body()).metadata();
-  expect(metadata.width).toBe(160);
-  expect(metadata.height).toBe(160);
+  expect(metadata.width).toBe(200);
+  expect(metadata.height).toBe(200);
   expect(metadata.format).toBe('png');
 });
