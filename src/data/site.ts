@@ -33,7 +33,7 @@ export const site = {
   address:
     'Av. do Batel, 1230 — Bloco BTC, 6º andar, sala 601 — Batel — Curitiba/PR',
   education:
-    'Graduada em Psicologia pela Universidade Tuiuti do Paraná, com especialização em Neuropsicologia pela FAE Business School, conforme informações fornecidas para este projeto.',
+    'Graduada em Psicologia pela Universidade Tuiuti do Paraná, com especialização em Neuropsicologia pela FAE Business School.',
   // Ativos originais enviados pela cliente; derivados apenas para tamanho e compressão.
   assets: {
     logo: {
