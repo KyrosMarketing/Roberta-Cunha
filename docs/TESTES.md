@@ -147,3 +147,5 @@ A nova imagem é `public/social/roberta-cunha-whatsapp-compact-v5.png` e a URL d
 Build e tipos aprovados. O teste direcionado passou (1 teste, 1,6 s), validando as tags únicas, as duas URLs de imagem, dimensões 200 × 200, PNG e os valores de título, descrição e canonical preservados. O acesso ao GitHub Raw para um arquivo já publicado da Roberta foi confirmado antes da alteração; o arquivo novo deve ser conferido publicamente após o push. Nenhum layout, texto visível ou recurso funcional da landing foi alterado.
 
 A configuração equivalente não garante uma renderização equivalente no WhatsApp: cache, histórico da URL e decisões do cliente ainda podem afetar o cartão. A consulta direta ao domínio continua bloqueada pelo proxy do ambiente. Conferir uma mensagem nova após o deploy; o parâmetro de teste `?preview=compacto5` não modifica a canonical e não garante renovação de cache.
+
+Após o push, a URL final da imagem no GitHub Raw foi consultada com sucesso: HTTP 200, Content-Type image/png, 200 × 200 px e conteúdo binário idêntico ao arquivo local. Isso confirma a disponibilidade pública do ativo, mas não a renderização ou atualização do cache do WhatsApp.

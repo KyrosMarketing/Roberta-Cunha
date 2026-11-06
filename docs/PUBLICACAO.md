@@ -9,7 +9,8 @@
 - [x] Versões responsivas AVIF e WebP dos dois retratos.
 - [x] Miniatura Open Graph de 200 × 200 px com a logo original, dimensões declaradas e `twitter:card=summary`.
 - [ ] Conferir uma nova prévia no WhatsApp após o deploy; o layout é decidido pela plataforma e pode usar cache.
-- [ ] Confirmar resposta pública da imagem no domínio após deploy e revisar um novo compartilhamento.
+- [x] Confirmada resposta HTTP 200 da imagem no GitHub Raw, PNG real de 200 × 200 px.
+- [ ] Confirmar novos metadados no domínio após o deploy e revisar um novo compartilhamento.
 - [x] Logo original da Kyros recebida, preservada e aplicada à assinatura clicável no rodapé.
 - [ ] Conferir nome, CRP 08/38333, formação e nome oficial da instituição/especialização.
 - [ ] Validar a forma de apresentar qualificação/especialidade e referência à TCC.
