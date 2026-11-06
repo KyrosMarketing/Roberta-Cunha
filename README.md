@@ -48,7 +48,7 @@ As fotografias e a marca original foram recebidas em `Arquivo 2.zip`. Os cinco a
 
 Os caminhos, textos alternativos, dimensões, `srcSet`, `avifSrcSet` e `sizes` ficam em `site.assets`, em `src/data/site.ts`. `Portrait.astro` usa `<picture>`, AVIF preferencial com fallback WebP, prioridade de carregamento na hero e lazy loading em Sobre. O enquadramento usa `object-fit: cover`, com posição focal definida por seção no CSS. Os arquivos não recebem filtros ou alterações de identidade.
 
-A imagem social atual é uma miniatura quadrada de 400 × 400 px com a logo original em `public/social/roberta-cunha-whatsapp-v3.png`, sem fotografia, recorte, distorção ou recoloração da marca. Para regenerar: `npm run generate:social`. A marca completa é redimensionada proporcionalmente e centralizada em fundo off-white; o arquivo original é preservado. A arte anterior de 1200 × 630 px continua disponível em `public/social/roberta-cunha-og-v1.png` para não quebrar referências antigas. Fontes são distribuídas localmente via pacotes Fontsource; nenhuma chamada a Google Fonts.
+A imagem social atual é uma miniatura quadrada de 160 × 160 px com a logo original em `public/social/roberta-cunha-whatsapp-compact-v4.png`, sem fotografia, recorte, distorção ou recoloração da marca. Para regenerar: `npm run generate:social`. A marca completa é redimensionada proporcionalmente e centralizada em fundo off-white; o arquivo original é preservado. A arte anterior de 1200 × 630 px continua disponível em `public/social/roberta-cunha-og-v1.png` para não quebrar referências antigas. Fontes são distribuídas localmente via pacotes Fontsource; nenhuma chamada a Google Fonts.
 
 ## Privacidade e integrações
 
@@ -78,7 +78,7 @@ No Cloudflare Pages, selecione o repositório `KyrosMarketing/Roberta-Cunha`, br
 
 ## Compartilhamento social e assinatura da agência
 
-Título e descrição padrão estão em `site.seo`; o layout reutiliza os mesmos valores em title, description, Open Graph e Twitter Card. A canonical da landing é `https://robertacunha.com.br/`. A URL absoluta da imagem é `https://robertacunha.com.br/social/roberta-cunha-whatsapp-v3.png`, publicada como arquivo estático sem autenticação pelo projeto. Ao mudar a imagem futuramente, versione o nome do arquivo e atualize `site.assets.social` para reduzir cache de imagem.
+Título e descrição padrão estão em `site.seo`; o layout reutiliza os mesmos valores em title, description, Open Graph e Twitter Card. A canonical da landing é `https://robertacunha.com.br/`. A URL absoluta da imagem é `https://robertacunha.com.br/social/roberta-cunha-whatsapp-compact-v4.png`, publicada como arquivo estático sem autenticação pelo projeto. Ao mudar a imagem futuramente, versione o nome do arquivo e atualize `site.assets.social` para reduzir cache de imagem.
 
 Confirme o HTTP 200 e `Content-Type: image/png` nesse endereço no domínio final depois do deploy. O domínio precisa apontar para esta versão; publicar somente no Pages não atualiza automaticamente outro servidor no domínio. Neste ambiente, a consulta pública ao domínio foi bloqueada pelo proxy com 403; a disponibilização foi validada no preview de produção local, sem confirmar a hospedagem pública.
 

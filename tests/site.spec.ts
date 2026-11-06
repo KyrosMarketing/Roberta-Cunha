@@ -337,15 +337,15 @@ test('metadados sociais únicos, URLs absolutas e imagem pública estática', as
   const description =
     'Um espaço de escuta, acolhimento e cuidado. Psicoterapia e Avaliação Neuropsicológica para crianças, adolescentes e adultos. Atendimento presencial e online.';
   const image =
-    'https://robertacunha.com.br/social/roberta-cunha-whatsapp-v3.png';
+    'https://robertacunha.com.br/social/roberta-cunha-whatsapp-compact-v4.png';
   await expect(page).toHaveTitle(title);
   const expected = [
     ['property', 'og:title', title],
     ['property', 'og:description', description],
     ['property', 'og:url', 'https://robertacunha.com.br/'],
     ['property', 'og:image', image],
-    ['property', 'og:image:width', '400'],
-    ['property', 'og:image:height', '400'],
+    ['property', 'og:image:width', '160'],
+    ['property', 'og:image:height', '160'],
     ['property', 'og:image:type', 'image/png'],
     ['name', 'description', description],
     ['name', 'twitter:card', 'summary'],
@@ -377,7 +377,7 @@ test('metadados sociais únicos, URLs absolutas e imagem pública estática', as
   expect(response.status()).toBe(200);
   expect(response.headers()['content-type']).toContain('image/png');
   const metadata = await sharp(await response.body()).metadata();
-  expect(metadata.width).toBe(400);
-  expect(metadata.height).toBe(400);
+  expect(metadata.width).toBe(160);
+  expect(metadata.height).toBe(160);
   expect(metadata.format).toBe('png');
 });

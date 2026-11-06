@@ -129,3 +129,11 @@ Open Graph declara largura/altura 400, PNG e URL absoluta. Twitter Card usa `sum
 Build e checagem de tipos aprovados. O teste direcionado de metadados sociais passou (1 teste em 1,6 s), conferindo tags únicas, valores preservados, dimensões e resposta HTTP 200 com `image/png` no preview local. A miniatura foi inspecionada visualmente. A consulta externa à URL final retornou 403 do proxy do ambiente; portanto, a disponibilidade pública e o formato real no WhatsApp não foram confirmados nesta sessão.
 
 A imagem quadrada busca favorecer o cartão compacto, mas quem determina o layout é o WhatsApp. O nome de arquivo novo reduz a reutilização de cache da imagem; não força atualização dos metadados da página nem de mensagens já enviadas. Testar um novo compartilhamento após o deploy, considerando o cache da plataforma.
+
+## Nova tentativa de cartão compacto com logo reduzida
+
+A captura enviada pela cliente mostrou que a miniatura quadrada de 400 × 400 ainda era exibida como cartão grande no WhatsApp. A nova tentativa usa um PNG real de 160 × 160 px, contendo exclusivamente a logo original da Roberta, com escala proporcional e fundo off-white, em `roberta-cunha-whatsapp-compact-v4.png`. As dimensões Open Graph correspondem ao arquivo real; `twitter:card=summary`, título, descrição, canonical e toda a landing foram preservados.
+
+Build e tipos aprovados. O teste direcionado de metadados passou (1 teste, 1,5 s), verificando tags únicas, dimensões reais do PNG, resposta HTTP 200 no preview local e valores preservados. O arquivo foi inspecionado visualmente. As imagens anteriores permanecem disponíveis para não quebrar referências já compartilhadas.
+
+A consulta ao site de referência `carolharder.com.br` foi bloqueada pelo proxy com 403; não foram copiadas imagens nem presumidos seus metadados. A redução para 160 px é uma tentativa de favorecer uma miniatura pequena, não uma configuração que force o layout do WhatsApp. Confirmar após o deploy com uma nova mensagem. A URL de teste `https://robertacunha.com.br/?preview=compacto4` pode ajudar a diferenciar a consulta em relação ao endereço previamente compartilhado, sem mudar a canonical; o cache e a renderização continuam sob controle da plataforma. Mensagens antigas podem manter o cartão anterior.
