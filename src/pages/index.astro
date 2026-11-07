@@ -4,30 +4,14 @@ import ScrollReveal from '../components/ScrollReveal.astro';
 import ContactLink from '../components/ContactLink.astro';
 import Portrait from '../components/Portrait.astro';
 import { site, services, process, faqs, maps, whatsapp } from '../data/site';
-const schema = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: site.fullName,
-  jobTitle: 'Psicóloga',
-  url: site.url,
-  telephone: site.phone,
-  email: site.email,
-  sameAs: [site.instagram],
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: 'Av. do Batel, 1230 — Bloco BTC, 6º andar, sala 601',
-    addressLocality: 'Curitiba',
-    addressRegion: 'PR',
-    addressCountry: 'BR',
-  },
-};
+import { homeStructuredData } from '../data/seo';
 ---
 
 <Layout>
   <script
     slot="head"
     type="application/ld+json"
-    set:html={JSON.stringify(schema).replace(/</g, '\\u003c')}
+    set:html={JSON.stringify(homeStructuredData).replace(/</g, '\\u003c')}
   />
   <main id="conteudo">
     <section class="hero container" id="inicio" aria-labelledby="hero-title">
@@ -414,8 +398,7 @@ const schema = {
             <p class="eyebrow">E-MAIL</p>
             <a href={`mailto:${site.email}`}>{site.email}</a>
           </div>
-          <p class="editorial-note">
-          </p>
+          <p class="editorial-note"></p>
         </div>
       </div>
     </section>

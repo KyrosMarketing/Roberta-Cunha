@@ -170,10 +170,13 @@ test('metadados, âncoras e páginas complementares', async ({
     'href',
     'https://robertacunha.com.br/',
   );
+  const schema = JSON.parse(
+    await page.locator('script[type="application/ld+json"]').innerText(),
+  );
   expect(
-    JSON.parse(
-      await page.locator('script[type="application/ld+json"]').innerText(),
-    ).name,
+    schema['@graph'].find(
+      (entity: { '@type': string }) => entity['@type'] === 'Person',
+    ).alternateName,
   ).toBe('Roberta da Cunha Harder');
   const anchors = await page
     .locator('a[href^="#"],a[href^="/#"]')
@@ -383,4 +386,107 @@ test('metadados sociais únicos, URLs absolutas e imagem pública estática', as
   expect(metadata.width).toBe(200);
   expect(metadata.height).toBe(200);
   expect(metadata.format).toBe('png');
+});
+
+test('landing indexável e homologações protegidas sem bloquear o domínio oficial', async ({
+  page,
+  request,
+}) => {
+  await page.goto('/');
+  await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
+  const headers = await (
+    await import('node:fs/promises')
+  ).readFile('dist/_headers', 'utf8');
+  const sections = headers
+    .split(/\n\s*\n/)
+    .map((block) =>
+      block
+        .split('\n')
+        .filter((line) => line.trim() && !line.trim().startsWith('#')),
+    )
+    .filter((lines) => lines.length);
+  const global = sections.find((lines) => lines[0] === '/*')!;
+  expect(global.some((line) => /x-robots-tag.*noindex/i.test(line))).toBe(
+    false,
+  );
+  expect(
+    sections.filter(
+      (lines) =>
+        lines[0].includes('roberta-cunha.pages.dev') &&
+        lines.some((line) => /x-robots-tag:\s*noindex/i.test(line)),
+    ),
+  ).toHaveLength(2);
+  for (const path of ['/politica-de-privacidade/', '/politica-de-cookies/']) {
+    await page.goto(path);
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
+      'content',
+      'noindex,follow',
+    );
+  }
+  const robots = await (await request.get('/robots.txt')).text();
+  expect(robots).toContain('Allow: /');
+  expect(robots).not.toMatch(/Disallow:\s*\/(?:\s|$)/);
+  const sitemap = await request.get('/sitemap.xml');
+  expect(sitemap.status()).toBe(200);
+  expect(sitemap.headers()['content-type']).toMatch(
+    /^(?:application|text)\/xml(?:;|$)/,
+  );
+  expect(await sitemap.text()).toContain(
+    '<loc>https://robertacunha.com.br/</loc>',
+  );
+});
+
+test('grafo de identidade Schema.org conectado e coerente com os dados oficiais', async ({
+  page,
+}) => {
+  await page.goto('/');
+  const scripts = page.locator('script[type="application/ld+json"]');
+  await expect(scripts).toHaveCount(1);
+  const schema = JSON.parse(await scripts.innerText());
+  expect(schema['@context']).toBe('https://schema.org');
+  const entities = schema['@graph'] as Array<Record<string, unknown>>;
+  expect(entities.map((entity) => entity['@type']).sort()).toEqual([
+    'ImageObject',
+    'Person',
+    'Place',
+    'WebPage',
+    'WebSite',
+  ]);
+  const identifiers = new Set(entities.map((entity) => entity['@id']));
+  expect(identifiers.size).toBe(entities.length);
+  const person = entities.find((entity) => entity['@type'] === 'Person')!;
+  expect(person.name).toBe('Roberta Cunha');
+  expect(person.alternateName).toBe('Roberta da Cunha Harder');
+  expect(person.sameAs).toEqual(['https://www.instagram.com/psirobertacunha/']);
+  expect(person.jobTitle).toBe('Psicóloga');
+  expect(person.identifier).toEqual({
+    '@type': 'PropertyValue',
+    propertyID: 'CRP',
+    value: '08/38333',
+  });
+  const inspect = (value: unknown) => {
+    if (Array.isArray(value)) return value.forEach(inspect);
+    if (!value || typeof value !== 'object') return;
+    const object = value as Record<string, unknown>;
+    if (object['@id']) expect(identifiers.has(object['@id'])).toBe(true);
+    for (const [key, child] of Object.entries(object)) {
+      expect([
+        'aggregateRating',
+        'review',
+        'award',
+        'priceRange',
+        'openingHours',
+        'geo',
+      ]).not.toContain(key);
+      if (['url', 'contentUrl', '@id'].includes(key))
+        expect(String(child)).toMatch(/^https:\/\/robertacunha\.com\.br\//);
+      inspect(child);
+    }
+  };
+  inspect(entities);
+  const website = entities.find((entity) => entity['@type'] === 'WebSite')!;
+  const webpage = entities.find((entity) => entity['@type'] === 'WebPage')!;
+  expect(website.publisher).toEqual({ '@id': person['@id'] });
+  expect(webpage.mainEntity).toEqual({ '@id': person['@id'] });
+  expect(webpage.isPartOf).toEqual({ '@id': website['@id'] });
 });

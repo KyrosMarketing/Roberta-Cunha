@@ -1,6 +1,6 @@
 # Roberta Cunha · Psicologia e Neuropsicologia
 
-Landing page editorial em Astro estático, TypeScript estrito e CSS próprio. Não há SPA, integrações de terceiros ativas, formulário clínico ou serviços de backend. Conteúdo preliminar baseado no briefing, sujeito à aprovação profissional. **Nenhuma publicação ou alteração de DNS foi realizada.**
+Landing page editorial em Astro estático, TypeScript estrito e CSS próprio. Não há SPA, integrações de terceiros ativas, formulário clínico ou serviços de backend. Conteúdo preliminar baseado no briefing, sujeito à aprovação profissional. **A branch SEO é uma proposta local para revisão: nenhuma alteração desta etapa foi publicada em produção ou aplicada ao DNS.**
 
 ## Desenvolvimento
 
@@ -70,11 +70,13 @@ Playwright inicia o preview da saída de produção automaticamente (execute o b
 
 Configuração prevista: build `npm run build`, diretório de saída `dist`, Node 24. Não precisa adaptador de servidor Astro. Os cabeçalhos em `public/_headers` são específicos do Pages. A página 404 é gerada como `404.html`. Não há regra SPA que capture URLs inexistentes. O inventário de URLs antigas e redirects 301 está pendente; não presumir que existam apenas as novas rotas. Consultar `docs/PUBLICACAO.md` antes de conectar GitHub/Cloudflare ou modificar o domínio.
 
-## Primeira versão de revisão no Pages
+## Indexação na branch SEO
 
-A indexação está bloqueada por `site.reviewMode: true` e pelo cabeçalho `X-Robots-Tag: noindex` em `public/_headers`. Isso não restringe acesso: qualquer pessoa com o endereço pode visualizar. O `robots.txt` permite rastreamento para os buscadores conseguirem ler o `noindex`. Antes do lançamento aprovado, desative `reviewMode`, remova somente o cabeçalho `X-Robots-Tag` e valide a saída. Documentos legais continuam com `noindex` próprio.
+Nesta branch, `site.reviewMode` está em `false` para preparar a landing indexável no domínio oficial. O bloqueio global `X-Robots-Tag: noindex` foi removido. As URLs estável e de preview `roberta-cunha.pages.dev` continuam com `noindex` por regras de host em `public/_headers`; documentos legais mantêm a diretiva própria. O preview local do Astro não aplica cabeçalhos específicos do Cloudflare Pages.
 
-No Cloudflare Pages, selecione o repositório `KyrosMarketing/Roberta-Cunha`, branch `main`, build `npm run build`, saída `dist`, raiz em branco e variável `NODE_VERSION=24`. O primeiro endereço deve ser o `.pages.dev` fornecido pela Cloudflare; não conectar o domínio ou alterar DNS nesta etapa.
+As mudanças dependem de aprovação para merge/push em `main` e publicação. A versão em produção não deve ser considerada corrigida apenas porque esta branch passou nos testes locais. Redirecionamento `www → sem www` depende de regra externa da Cloudflare e das condições de DNS/HTTPS existentes; instruções completas em `docs/seo/ACOES-EXTERNAS.md`.
+
+O grafo Schema.org fica em `src/data/seo.ts`, tipado com `schema-dts` (somente desenvolvimento), e utiliza os dados centrais de `site.ts`. `Person`, `WebSite`, `WebPage`, `Place` e `ImageObject` se conectam por identificadores estáveis. Não foram acrescentados avaliações, horários, coordenadas ou credenciais não fornecidas.
 
 ## Compartilhamento social e assinatura da agência
 
@@ -87,3 +89,11 @@ WhatsApp e outras plataformas podem guardar metadados e imagens antigos. Teste u
 O crédito da Kyros está ativo com o PNG original em `public/brand/kyros-original.png`, copiado byte a byte do ZIP enviado. A assinatura “Desenvolvido por” com a logo aponta para `https://kyrosmarketing.com.br/`. Os dados ficam em `site.agency`. O arquivo é quadrado e possui margens transparentes amplas; a caixa CSS apresenta a área útil da marca sem alterar o arquivo, recolorir, deformar ou cortar seus traços. Ao substituir a logo futuramente, confira essas margens e os ajustes da caixa.
 
 A miniatura quadrada e suas dimensões Open Graph tentam favorecer a prévia compacta. `twitter:card` usa `summary` para a imagem quadrada. Isso não determina o layout do WhatsApp: a plataforma pode continuar exibindo um cartão grande ou metadados anteriores em cache. A validação local não representa uma confirmação do layout em uma conversa real.
+
+## Auditoria SEO
+
+- `docs/seo/AUDITORIA-SEO.md`: achados, correções locais e limites da validação.
+- `docs/seo/ACOES-EXTERNAS.md`: Search Console, perfil no Google, www/HTTPS e medição.
+- `docs/seo/SUGESTOES-CONTEUDO.md`: sugestões separadas, não aplicadas ao site.
+
+Não alterar textos, identidade visual ou perfis externos como parte de uma atualização técnica sem aprovação. Nenhuma posição de busca, volume ou dado de Search Console foi presumido.

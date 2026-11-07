@@ -1,0 +1,72 @@
+[
+  {
+    "target": "google-nome",
+    "url": "https://www.google.com/search?q=%22Roberta+Cunha%22&hl=pt-BR",
+    "curl_exit": 56,
+    "status": "000",
+    "error": "curl: (56) CONNECT tunnel failed, response 403"
+  },
+  {
+    "target": "google-index",
+    "url": "https://www.google.com/search?q=site%3Arobertacunha.com.br&hl=pt-BR",
+    "curl_exit": 56,
+    "status": "000",
+    "error": "curl: (56) CONNECT tunnel failed, response 403"
+  },
+  {
+    "target": "google-maps",
+    "url": "https://www.google.com/maps/search/Roberta+Cunha+Psic%C3%B3loga+Curitiba/",
+    "curl_exit": 56,
+    "status": "000",
+    "error": "curl: (56) CONNECT tunnel failed, response 403"
+  },
+  {
+    "target": "roberta",
+    "url": "https://robertacunha.com.br/",
+    "curl_exit": 56,
+    "status": "000",
+    "error": "curl: (56) CONNECT tunnel failed, response 403"
+  },
+  {
+    "target": "www",
+    "url": "https://www.robertacunha.com.br/",
+    "curl_exit": 56,
+    "status": "000",
+    "error": "curl: (56) CONNECT tunnel failed, response 403"
+  },
+  {
+    "target": "google-business-guidelines",
+    "url": "https://support.google.com/business/answer/3038177?hl=pt-BR",
+    "curl_exit": 56,
+    "status": "000",
+    "error": "curl: (56) CONNECT tunnel failed, response 403"
+  },
+  {
+    "target": "google-schema-test",
+    "url": "https://search.google.com/test/rich-results",
+    "curl_exit": 56,
+    "status": "000",
+    "error": "curl: (56) CONNECT tunnel failed, response 403"
+  },
+  {
+    "target": "cloudflare-redirect-doc",
+    "url": "https://raw.githubusercontent.com/cloudflare/cloudflare-docs/production/src/content/docs/pages/configuration/redirects.mdx",
+    "curl_exit": 0,
+    "status": "200",
+    "error": ""
+  },
+  {
+    "target": "cloudflare-header-doc",
+    "url": "https://raw.githubusercontent.com/cloudflare/cloudflare-docs/production/src/content/docs/pages/configuration/headers.mdx",
+    "curl_exit": 0,
+    "status": "200",
+    "error": ""
+  },
+  {
+    "target": "perfil-google-fornecido",
+    "url": "https://share.google/nGd9m2bHeT5nB5FJ2",
+    "curl_exit": 56,
+    "status": "000",
+    "error": "CONNECT tunnel failed, response 403: bloqueio do proxy antes da resposta da origem."
+  }
+]

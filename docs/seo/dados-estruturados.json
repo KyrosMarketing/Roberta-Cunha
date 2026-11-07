@@ -1,0 +1,89 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://robertacunha.com.br/#person",
+      "name": "Roberta Cunha",
+      "alternateName": "Roberta da Cunha Harder",
+      "url": "https://robertacunha.com.br/",
+      "jobTitle": "Psicóloga",
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "CRP",
+        "value": "08/38333"
+      },
+      "description": "Roberta Cunha, psicóloga em Curitiba, atua em Psicoterapia e Avaliação Neuropsicológica.",
+      "sameAs": ["https://www.instagram.com/psirobertacunha/"],
+      "telephone": "+5541991614821",
+      "email": "contato@robertacunha.com.br",
+      "knowsAbout": ["Psicoterapia", "Avaliação Neuropsicológica"],
+      "workLocation": {
+        "@id": "https://robertacunha.com.br/#consultorio"
+      },
+      "image": {
+        "@id": "https://robertacunha.com.br/#portrait"
+      }
+    },
+    {
+      "@type": "Place",
+      "@id": "https://robertacunha.com.br/#consultorio",
+      "name": "Consultório de Roberta Cunha no Batel",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av. do Batel, 1230 — Bloco BTC, 6º andar, sala 601 — Batel",
+        "addressLocality": "Curitiba",
+        "addressRegion": "PR",
+        "addressCountry": "BR"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://robertacunha.com.br/#website",
+      "url": "https://robertacunha.com.br/",
+      "name": "Roberta Cunha",
+      "description": "Um espaço de escuta, acolhimento e cuidado. Psicoterapia e Avaliação Neuropsicológica para crianças, adolescentes e adultos. Atendimento presencial e online.",
+      "inLanguage": "pt-BR",
+      "publisher": {
+        "@id": "https://robertacunha.com.br/#person"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://robertacunha.com.br/#webpage",
+      "url": "https://robertacunha.com.br/",
+      "name": "Roberta Cunha | Psicologia e Neuropsicologia em Curitiba",
+      "description": "Um espaço de escuta, acolhimento e cuidado. Psicoterapia e Avaliação Neuropsicológica para crianças, adolescentes e adultos. Atendimento presencial e online.",
+      "inLanguage": "pt-BR",
+      "isPartOf": {
+        "@id": "https://robertacunha.com.br/#website"
+      },
+      "mainEntity": {
+        "@id": "https://robertacunha.com.br/#person"
+      },
+      "about": {
+        "@id": "https://robertacunha.com.br/#person"
+      },
+      "primaryImageOfPage": {
+        "@id": "https://robertacunha.com.br/#portrait"
+      }
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://robertacunha.com.br/#portrait",
+      "url": "https://robertacunha.com.br/images/roberta-retrato-853.webp",
+      "contentUrl": "https://robertacunha.com.br/images/roberta-retrato-853.webp",
+      "caption": "Roberta Cunha sorrindo, sentada em uma poltrona no consultório",
+      "width": {
+        "@type": "QuantitativeValue",
+        "value": 853,
+        "unitText": "px"
+      },
+      "height": {
+        "@type": "QuantitativeValue",
+        "value": 1280,
+        "unitText": "px"
+      }
+    }
+  ]
+}

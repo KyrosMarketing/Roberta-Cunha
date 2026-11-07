@@ -1,6 +1,12 @@
 /*
-  X-Robots-Tag: noindex
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: DENY
   Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Homologações não devem competir com o domínio oficial.
+https://roberta-cunha.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:version.roberta-cunha.pages.dev/*
+  X-Robots-Tag: noindex

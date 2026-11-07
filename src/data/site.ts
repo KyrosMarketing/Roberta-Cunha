@@ -1,6 +1,7 @@
 export const site = {
-  // Primeira versão pública para revisão; liberar indexação somente após aprovação.
-  reviewMode: true,
+  // A branch SEO prepara indexação no domínio oficial; publicar somente após aprovação.
+  // Homologações *.pages.dev permanecem com noindex no cabeçalho por host.
+  reviewMode: false,
   name: 'Roberta Cunha',
   seo: {
     title: 'Roberta Cunha | Psicologia e Neuropsicologia em Curitiba',
@@ -32,6 +33,12 @@ export const site = {
   instagram: 'https://www.instagram.com/psirobertacunha/',
   address:
     'Av. do Batel, 1230 — Bloco BTC, 6º andar, sala 601 — Batel — Curitiba/PR',
+  postalAddress: {
+    streetAddress: 'Av. do Batel, 1230 — Bloco BTC, 6º andar, sala 601 — Batel',
+    addressLocality: 'Curitiba',
+    addressRegion: 'PR',
+    addressCountry: 'BR',
+  },
   education:
     'Graduada em Psicologia pela Universidade Tuiuti do Paraná, com especialização em Neuropsicologia pela FAE Business School.',
   // Ativos originais enviados pela cliente; derivados apenas para tamanho e compressão.

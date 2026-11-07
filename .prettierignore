@@ -6,3 +6,4 @@ docs/lighthouse-*
 docs/screenshots
 test-results
 playwright-report
+docs/seo/lighthouse-*
