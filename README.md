@@ -1,6 +1,6 @@
 # Roberta Cunha · Psicologia e Neuropsicologia
 
-Landing page editorial em Astro estático, TypeScript estrito e CSS próprio. Não há SPA, integrações de terceiros ativas, formulário clínico ou serviços de backend. Conteúdo preliminar baseado no briefing, sujeito à aprovação profissional. **A branch SEO é uma proposta local para revisão: nenhuma alteração desta etapa foi publicada em produção ou aplicada ao DNS.**
+Landing page editorial em Astro estático, TypeScript estrito e CSS próprio. Não há SPA, integrações de terceiros ativas, formulário clínico ou serviços de backend. Conteúdo preliminar baseado no briefing, sujeito à aprovação profissional. **As correções técnicas de SEO foram autorizadas para envio à main em 7/11/2026. O deploy e a resposta pública devem ser conferidos na Cloudflare; DNS e perfis externos permanecem sem alterações nesta etapa.**
 
 ## Desenvolvimento
 
@@ -74,7 +74,7 @@ Configuração prevista: build `npm run build`, diretório de saída `dist`, Nod
 
 Nesta branch, `site.reviewMode` está em `false` para preparar a landing indexável no domínio oficial. O bloqueio global `X-Robots-Tag: noindex` foi removido. As URLs estável e de preview `roberta-cunha.pages.dev` continuam com `noindex` por regras de host em `public/_headers`; documentos legais mantêm a diretiva própria. O preview local do Astro não aplica cabeçalhos específicos do Cloudflare Pages.
 
-As mudanças dependem de aprovação para merge/push em `main` e publicação. A versão em produção não deve ser considerada corrigida apenas porque esta branch passou nos testes locais. Redirecionamento `www → sem www` depende de regra externa da Cloudflare e das condições de DNS/HTTPS existentes; instruções completas em `docs/seo/ACOES-EXTERNAS.md`.
+O envio das mudanças a `main` foi autorizado em 7/11/2026. A versão em produção só deve ser considerada atualizada após o deploy e a conferência da resposta HTTP pública. Redirecionamento `www → sem www` depende de regra externa da Cloudflare e das condições de DNS/HTTPS existentes; instruções completas em `docs/seo/ACOES-EXTERNAS.md`.
 
 O grafo Schema.org fica em `src/data/seo.ts`, tipado com `schema-dts` (somente desenvolvimento), e utiliza os dados centrais de `site.ts`. `Person`, `WebSite`, `WebPage`, `Place` e `ImageObject` se conectam por identificadores estáveis. Não foram acrescentados avaliações, horários, coordenadas ou credenciais não fornecidas.
 

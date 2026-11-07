@@ -4,6 +4,10 @@ Data: **7 de novembro de 2026**. Repositório: `KyrosMarketing/Roberta-Cunha`. B
 
 **As correções estão implementadas e validadas localmente; não foram enviadas à main, publicadas em produção nem aplicadas ao DNS ou a perfis externos.** A captura dos resultados atuais do Google mencionada no pedido ainda não foi fornecida. Nenhuma posição, volume de busca, impressão, clique ou status real de indexação foi presumido.
 
+## Atualização de autorização
+
+Em 7/11/2026, após a entrega desta auditoria, a cliente autorizou o envio das correções técnicas à main, com esclarecimento de que elas favorecem indexação e identificação, mas não garantem o topo dos resultados. A auditoria abaixo registra o estado anterior ao envio. O sucesso do deploy e a resposta HTTP pública ainda precisam ser conferidos; nenhuma configuração de DNS ou perfil externo integra essa autorização técnica.
+
 ## Conclusão principal
 
 A versão da `main` inspecionada contém **dois pedidos explícitos para não indexar a landing**:

@@ -4,7 +4,7 @@ Estas instruções não foram executadas em serviços externos. DNS, perfis e pu
 
 ## 1. Aplicar a correção técnica após aprovação
 
-A branch local `seo/identidade-indexacao` remove o bloqueio de indexação da landing no domínio oficial e acrescenta o grafo de identidade. A `main` continua sem essa mudança até autorização e merge/push. O vínculo GitHub/Cloudflare publica alterações em `main`; não fazer esse envio inadvertidamente.
+A branch local `seo/identidade-indexacao` remove o bloqueio de indexação da landing no domínio oficial e acrescenta o grafo de identidade. A cliente autorizou o envio dessas correções técnicas a `main` em 7/11/2026. O vínculo GitHub/Cloudflare publica alterações em `main`; não fazer esse envio inadvertidamente.
 
 Após o deploy aprovado:
 
