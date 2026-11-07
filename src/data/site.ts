@@ -96,7 +96,7 @@ export const site = {
   integrations: {
     ga4: '',
     gtm: '',
-    searchConsole: '',
+    searchConsole: 'HwHlkeUaiWAYnKmsiJRdUdYmCidNTv_zxND8nrfOtEI',
     metaPixel: '',
     marketingEnabled: false,
   },
